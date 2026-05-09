@@ -1,0 +1,211 @@
+.page {
+  height: calc(100vh - 64px);
+  display: flex;
+  flex-direction: column;
+  padding: 20px 24px 16px;
+  gap: 14px;
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.headerLeft { display: flex; flex-direction: column; gap: 2px; }
+
+.title {
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.subtitle { font-size: 0.8rem; color: var(--muted); }
+
+.langTabs { display: flex; gap: 6px; }
+
+.langTab {
+  padding: 7px 16px;
+  border-radius: 8px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.langTab:hover { border-color: var(--border2); color: var(--text); }
+
+.langActive {
+  background: rgba(0,255,159,0.1) !important;
+  border-color: rgba(0,255,159,0.35) !important;
+  color: var(--accent) !important;
+}
+
+/* Snippets */
+.snippets {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.snippetsLabel {
+  font-size: 0.75rem;
+  color: var(--muted);
+  font-family: var(--font-mono);
+}
+
+.snippet {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  padding: 4px 12px;
+  border-radius: 100px;
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.snippet:hover { border-color: var(--border2); color: var(--text); }
+
+/* Editor layout */
+.editor {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  min-height: 0;
+}
+
+.editorPanel, .outputPanel {
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.editorBar, .outputBar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px;
+  background: var(--bg3);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.dots { display: flex; gap: 6px; }
+.dots span { width: 11px; height: 11px; border-radius: 50%; }
+
+.filename {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+  flex: 1;
+}
+
+.outputBar {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+  justify-content: space-between;
+}
+
+.runBtn {
+  background: var(--accent);
+  color: var(--bg);
+  border: none;
+  padding: 4px 14px;
+  border-radius: 5px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  transition: opacity 0.15s;
+}
+.runBtn:hover { opacity: 0.85; }
+
+.editorArea {
+  flex: 1;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  line-height: 1.7;
+  padding: 16px;
+  border: none;
+  outline: none;
+  resize: none;
+  tab-size: 2;
+}
+
+.output {
+  flex: 1;
+  padding: 16px;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--accent);
+  line-height: 1.8;
+  white-space: pre-wrap;
+  overflow-y: auto;
+  background: var(--bg);
+}
+
+.placeholder { color: var(--muted); font-style: italic; }
+
+.preview {
+  flex: 1;
+  border: none;
+  background: white;
+}
+
+.clearBtn, .resetBtn {
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 0.72rem;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  transition: color 0.15s;
+}
+.clearBtn:hover, .resetBtn:hover { color: var(--text); }
+
+/* Tips */
+.tips {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 8px 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.75rem;
+  color: var(--muted);
+  flex-shrink: 0;
+}
+
+.tipsLabel { color: var(--text); font-weight: 600; }
+
+.tips code {
+  font-family: var(--font-mono);
+  background: rgba(255,255,255,0.08);
+  padding: 1px 5px;
+  border-radius: 3px;
+  color: var(--accent);
+}
+
+@media (max-width: 768px) {
+  .page { height: auto; overflow: auto; }
+  .editor { grid-template-columns: 1fr; height: auto; }
+  .editorPanel { height: 350px; }
+  .outputPanel { height: 200px; }
+}

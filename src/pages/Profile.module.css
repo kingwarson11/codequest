@@ -1,0 +1,212 @@
+.page { padding: 60px 0 80px; min-height: 100vh; }
+
+.layout {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+/* Profile card */
+.sidebar { position: sticky; top: 80px; }
+
+.profileCard {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+}
+
+.avatarRing {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  padding: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar {
+  width: 82px;
+  height: 82px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent2), var(--accent));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: white;
+}
+
+.playerName {
+  font-size: 1.3rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.levelTag {
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  color: var(--accent);
+  background: rgba(0,255,159,0.1);
+  border: 1px solid rgba(0,255,159,0.2);
+  padding: 4px 12px;
+  border-radius: 100px;
+}
+
+.xpBar {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.xpBarRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: var(--muted);
+  font-family: var(--font-mono);
+}
+
+.xpNext {
+  font-size: 0.72rem;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  text-align: right;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.statBox {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
+}
+
+.statNum {
+  font-family: var(--font-mono);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.statLabel {
+  font-size: 0.68rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* Main content */
+.section { margin-bottom: 48px; }
+
+.sectionTitle {
+  font-size: 1.2rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+/* Course rows */
+.courseRow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  text-decoration: none;
+  color: var(--text);
+  margin-bottom: 10px;
+  transition: all 0.15s;
+}
+
+.courseRow:hover {
+  border-color: var(--border2);
+  transform: translateX(4px);
+}
+
+.courseEmoji { font-size: 1.5rem; flex-shrink: 0; }
+
+.courseInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.courseRowTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.courseName { font-size: 0.9rem; font-weight: 600; }
+.coursePct { font-size: 0.75rem; font-family: var(--font-mono); color: var(--muted); }
+.courseMeta { font-size: 0.72rem; color: var(--muted); font-family: var(--font-mono); }
+
+.startLink { font-size: 0.8rem; color: var(--muted); flex-shrink: 0; }
+.continueLink { font-size: 0.8rem; font-weight: 700; flex-shrink: 0; }
+.doneTag {
+  font-size: 0.9rem;
+  color: var(--accent);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* Badges */
+.badgeGrid { display: flex; flex-direction: column; gap: 10px; }
+
+.badge {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  background: var(--surface);
+  border: 1px solid rgba(0,255,159,0.2);
+  border-radius: 10px;
+  transition: border-color 0.15s;
+}
+
+.badge:hover { border-color: rgba(0,255,159,0.4); }
+
+.badgeLocked {
+  border-color: var(--border) !important;
+  opacity: 0.6;
+}
+
+.badgeEmoji { font-size: 1.8rem; width: 36px; text-align: center; }
+
+.badgeInfo { flex: 1; display: flex; flex-direction: column; gap: 2px; }
+.badgeTitle { font-size: 0.9rem; font-weight: 700; }
+.badgeDesc { font-size: 0.78rem; color: var(--muted); }
+
+.badgeDone { color: var(--accent); font-weight: 700; font-size: 1rem; }
+.badgeLock { font-size: 0.9rem; }
+
+@media (max-width: 900px) {
+  .layout { grid-template-columns: 1fr; }
+  .sidebar { position: static; }
+}
