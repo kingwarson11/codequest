@@ -1,5 +1,7 @@
 # CodeQuest — Learn to Code the Fun Way
 
+🌐 **Live Site: [https://codequest-rouge.vercel.app/](https://codequest-rouge.vercel.app/)**
+
 CodeQuest is an interactive website where anyone can learn coding from scratch. Instead of watching videos or reading boring textbooks, users learn by doing — reading short lessons, writing real code in the browser, and completing challenges that test what they just learned. Every lesson completed earns XP points, which level you up and unlock badges, making the whole experience feel like a game.
 
 ---
@@ -49,24 +51,3 @@ The profile page shows everything in one place — your current level, total XP,
 ## Tech Used
 
 Built with **React** and **Vite**. Styled using CSS Modules. No backend or database — all progress is saved directly in the browser using localStorage, so nothing is lost when you close the tab.
-
----
-
-## How to Run It
-
-```bash
-npm install
-npm run dev
-```
-
-Open http://localhost:5173 in your browser.
-
----
-
-## How to Deploy
-
-Push the project to GitHub, then import it on [vercel.com](https://vercel.com). Vercel detects the setup automatically and deploys it in under a minute.
-
----
-
-Built by kingwarson11
