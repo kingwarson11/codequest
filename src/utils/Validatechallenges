@@ -1,252 +1,137 @@
 /**
- * Validates a challenge answer.
+ * Strict challenge validator.
+ * Runs the code, checks the actual output against expected patterns.
  * Returns: { pass: bool, message: string }
  */
 
 export function validateChallenge({ lesson, courseId, answer, output }) {
-  const code = answer.trim()
-  const out  = (output || '').trim()
-  const lang = getLang(courseId)
+  const code   = (answer || '').trim()
+  const out    = (output || '').trim()
+  const lang   = getLang(courseId)
 
-  // Too short
-  if (code.length < 10) {
-    return { pass: false, message: '✏️ Write your solution first — it looks too short.' }
+  // ── Step 1: Must have written something ──────────────────────────────────
+  if (code.length < 5) {
+    return fail('✏️  Write your solution first before submitting.')
   }
 
-  // Must run first (except HTML/CSS which show preview)
-  if (!output && lang !== 'html' && lang !== 'css' && lang !== 'git') {
-    return { pass: false, message: '▶ Click "Run My Code" first to test your solution.' }
+  // ── Step 2: Must have clicked Run first ──────────────────────────────────
+  if (!output && lang !== 'html' && lang !== 'css') {
+    return fail('▶  Click "Run My Code" first — we need to see your output before we can check it.')
   }
 
-  // Runtime error
+  // ── Step 3: No runtime errors allowed ────────────────────────────────────
   if (out.startsWith('❌')) {
-    return { pass: false, message: '🐛 Your code has an error — fix it and run again before submitting.' }
+    return fail(`🐛  Fix the error in your code first:\n${out}`)
   }
 
-  if (lang === 'python') return validatePython({ lesson, code, out })
-  if (lang === 'javascript') return validateJS({ lesson, code, out })
-  if (lang === 'html') return validateHTML({ lesson, code })
-  if (lang === 'css') return validateCSS({ lesson, code })
-  if (lang === 'git') return validateGit({ lesson, code })
+  // ── Step 4: Must produce output (for non-preview languages) ──────────────
+  if (!out && lang !== 'html' && lang !== 'css' && lang !== 'git') {
+    return fail('📭  Your code ran but produced no output. Add a print() or console.log() to show your result.')
+  }
 
-  return { pass: true, message: '✅ Looks good!' }
+  // ── Step 5: Lesson-specific checks ───────────────────────────────────────
+  if (lesson.checks) {
+    for (const check of lesson.checks) {
+      const result = runCheck(check, code, out, lang)
+      if (!result.pass) return fail(result.message)
+    }
+  }
+
+  // ── Step 6: Expected output matching ─────────────────────────────────────
+  if (lesson.expected_outputs) {
+    for (const expected of lesson.expected_outputs) {
+      if (!outContains(out, expected)) {
+        return fail(`❌  Expected your output to contain "${expected}" but it didn't.\n\nYour output:\n${out || '(empty)'}`)
+      }
+    }
+  }
+
+  return pass('✅  Correct! Well done.')
 }
 
-function validatePython({ lesson, code, out }) {
-  const lower = code.toLowerCase()
-  const ch    = (lesson.challenge || '').toLowerCase()
+// ── Run a single check rule ───────────────────────────────────────────────
+function runCheck(check, code, out, lang) {
+  const codeLow = code.toLowerCase()
+  const outLow  = out.toLowerCase()
 
-  if (!lower.includes('print(')) {
-    return { pass: false, message: '🐍 Add a print() statement to show your output.' }
-  }
-  if (!out) {
-    return { pass: false, message: '▶ Run your code first — we need to see the output.' }
-  }
-  if (ch.includes('variable') || ch.includes('name') || ch.includes('age')) {
-    if (!lower.includes('=')) {
-      return { pass: false, message: '📌 Define at least one variable using = before printing.' }
-    }
-  }
-  if (ch.includes('loop') || ch.includes('range') || ch.includes('1 to 10') || ch.includes('numbers')) {
-    if (!lower.includes('for ') && !lower.includes('while ')) {
-      return { pass: false, message: '🔄 This challenge requires a loop (for or while).' }
-    }
-  }
-  if (ch.includes('function') || ch.includes('def ')) {
-    if (!lower.includes('def ')) {
-      return { pass: false, message: '⚙️ Define a function using def.' }
-    }
-    if (!lower.includes('return') && !lower.includes('print(')) {
-      return { pass: false, message: '↩️ Your function should return a value or print something.' }
-    }
-  }
-  if (ch.includes('if') || ch.includes('positive') || ch.includes('negative') || ch.includes('condition') || ch.includes('check')) {
-    if (!lower.includes('if ')) {
-      return { pass: false, message: '🔀 Use an if statement to check the condition.' }
-    }
-  }
-  if (ch.includes('list') || ch.includes('append') || ch.includes('sort')) {
-    if (!lower.includes('[') && !lower.includes('list(')) {
-      return { pass: false, message: '📋 Use a list [] in your solution.' }
-    }
-  }
-  if (ch.includes('class') || ch.includes('object')) {
-    if (!lower.includes('class ')) {
-      return { pass: false, message: '🏗️ Define a class using the class keyword.' }
-    }
-  }
-  if (ch.includes('sort') || ch.includes('bubble') || ch.includes('algorithm')) {
-    if (!lower.includes('def ') && !lower.includes('sort')) {
-      return { pass: false, message: '🔢 Implement the sorting algorithm as a function.' }
-    }
-  }
+  switch (check.type) {
 
-  return { pass: true, message: '✅ Correct! Your code ran and produced output.' }
+    case 'code_contains':
+      if (!codeLow.includes(check.value.toLowerCase())) {
+        return fail(check.message || `Your code must contain: ${check.value}`)
+      }
+      break
+
+    case 'code_not_contains':
+      if (codeLow.includes(check.value.toLowerCase())) {
+        return fail(check.message || `Your code should not contain: ${check.value}`)
+      }
+      break
+
+    case 'output_contains':
+      if (!outContains(out, check.value)) {
+        return fail(check.message || `Expected output to contain: "${check.value}"\n\nYour output:\n${out || '(empty)'}`)
+      }
+      break
+
+    case 'output_equals':
+      if (out.trim() !== String(check.value).trim()) {
+        return fail(check.message || `Expected:\n${check.value}\n\nYour output:\n${out || '(empty)'}`)
+      }
+      break
+
+    case 'output_lines_gte':
+      if (out.split('\n').filter(l => l.trim()).length < check.value) {
+        return fail(check.message || `Your output should have at least ${check.value} lines. Got ${out.split('\n').filter(l=>l.trim()).length}.`)
+      }
+      break
+
+    case 'output_contains_number':
+      if (!outContainsNumber(out, check.value)) {
+        return fail(check.message || `Expected the number ${check.value} in your output. Got:\n${out}`)
+      }
+      break
+
+    case 'output_sorted': {
+      const nums = out.split(/[\s,\[\]]+/).filter(x => x && !isNaN(x)).map(Number)
+      const sorted = [...nums].sort((a, b) => a - b)
+      if (JSON.stringify(nums) !== JSON.stringify(sorted)) {
+        return fail(check.message || `Your output should be a sorted list. Got:\n${out}`)
+      }
+      break
+    }
+
+    case 'output_is_number': {
+      const trimmed = out.trim()
+      if (isNaN(Number(trimmed))) {
+        return fail(check.message || `Expected a number as output. Got: ${trimmed}`)
+      }
+      break
+    }
+
+    default:
+      break
+  }
+  return pass()
 }
 
-function validateJS({ lesson, code, out }) {
-  const lower = code.toLowerCase()
-  const ch    = (lesson.challenge || '').toLowerCase()
-
-  if (!lower.includes('console.log(')) {
-    return { pass: false, message: '💻 Add a console.log() to show your output.' }
-  }
-  if (!out) {
-    return { pass: false, message: '▶ Run your code first before submitting.' }
-  }
-  if (ch.includes('function') || ch.includes('arrow')) {
-    if (!lower.includes('function ') && !lower.includes('=>')) {
-      return { pass: false, message: '⚙️ Define a function (use function or arrow =>).' }
-    }
-  }
-  if (ch.includes('const') || ch.includes('let') || ch.includes('variable')) {
-    if (!lower.includes('const ') && !lower.includes('let ')) {
-      return { pass: false, message: '📌 Declare your variable using const or let.' }
-    }
-  }
-  if (ch.includes('loop') || ch.includes('array') || ch.includes('map') || ch.includes('forEach')) {
-    if (!lower.includes('for') && !lower.includes('.map') && !lower.includes('.foreach') && !lower.includes('while')) {
-      return { pass: false, message: '🔄 Use a loop or array method (.map, .forEach, for).' }
-    }
-  }
-  if (ch.includes('fetch') || ch.includes('async') || ch.includes('await') || ch.includes('promise')) {
-    if (!lower.includes('fetch') && !lower.includes('async') && !lower.includes('promise')) {
-      return { pass: false, message: '🌐 Use fetch, async/await, or a Promise.' }
-    }
-  }
-
-  return { pass: true, message: '✅ Correct! Your code ran successfully.' }
+// ── Helpers ──────────────────────────────────────────────────────────────
+function outContains(out, value) {
+  return out.toLowerCase().includes(String(value).toLowerCase())
 }
 
-function validateHTML({ lesson, code }) {
-  const lower = code.toLowerCase()
-  const ch    = (lesson.challenge || '').toLowerCase()
-
-  if (!lower.includes('<') || !lower.includes('>')) {
-    return { pass: false, message: '🏗️ Write some HTML tags first.' }
-  }
-  if (ch.includes('heading') || ch.includes('h1') || ch.includes('title')) {
-    if (!lower.includes('<h1') && !lower.includes('<h2') && !lower.includes('<h3')) {
-      return { pass: false, message: '📝 Add a heading tag: <h1>, <h2>, or <h3>.' }
-    }
-  }
-  if (ch.includes('paragraph')) {
-    if (!lower.includes('<p')) {
-      return { pass: false, message: '📄 Add a paragraph using <p>.' }
-    }
-  }
-  if (ch.includes('link') || ch.includes('<a')) {
-    if (!lower.includes('<a ')) {
-      return { pass: false, message: '🔗 Add a link using <a href="...">.' }
-    }
-  }
-  if (ch.includes('image') || ch.includes('img')) {
-    if (!lower.includes('<img')) {
-      return { pass: false, message: '🖼️ Add an image using <img src="...">.' }
-    }
-  }
-  if (ch.includes('form') || ch.includes('input')) {
-    if (!lower.includes('<form') && !lower.includes('<input')) {
-      return { pass: false, message: '📋 Add a <form> or <input> element.' }
-    }
-  }
-  if (ch.includes('bold') || ch.includes('strong')) {
-    if (!lower.includes('<strong') && !lower.includes('<b>')) {
-      return { pass: false, message: '💪 Use <strong> to bold your text.' }
-    }
-  }
-  if (ch.includes('italic') || ch.includes('em')) {
-    if (!lower.includes('<em') && !lower.includes('<i>')) {
-      return { pass: false, message: '✍️ Use <em> to italicize your text.' }
-    }
-  }
-  if (ch.includes('list') || ch.includes('<ul') || ch.includes('<ol')) {
-    if (!lower.includes('<ul') && !lower.includes('<ol')) {
-      return { pass: false, message: '📋 Add a list using <ul> or <ol> with <li> items.' }
-    }
-  }
-
-  return { pass: true, message: '✅ Valid HTML structure — well done!' }
+function outContainsNumber(out, num) {
+  return out.split(/[\s,\[\]()]+/).some(t => Number(t) === num)
 }
 
-function validateCSS({ lesson, code }) {
-  const lower = code.toLowerCase()
-  const ch    = (lesson.challenge || '').toLowerCase()
-
-  if (!lower.includes('{') || !lower.includes('}')) {
-    return { pass: false, message: '🎨 Write a CSS rule block with { } braces.' }
-  }
-  if (!lower.includes(':')) {
-    return { pass: false, message: '🎨 Add a CSS property like color: red; inside your rule.' }
-  }
-  if (ch.includes('color')) {
-    if (!lower.includes('color:')) {
-      return { pass: false, message: '🎨 Set a color property in your CSS.' }
-    }
-  }
-  if (ch.includes('background')) {
-    if (!lower.includes('background')) {
-      return { pass: false, message: '🖼️ Add a background property.' }
-    }
-  }
-  if (ch.includes('padding') || ch.includes('margin')) {
-    if (!lower.includes('padding') && !lower.includes('margin')) {
-      return { pass: false, message: '📐 Add padding or margin to your rule.' }
-    }
-  }
-  if (ch.includes('flex') || ch.includes('flexbox')) {
-    if (!lower.includes('flex')) {
-      return { pass: false, message: '📦 Use display: flex in your CSS.' }
-    }
-  }
-  if (ch.includes('grid')) {
-    if (!lower.includes('grid')) {
-      return { pass: false, message: '🔲 Use display: grid in your CSS.' }
-    }
-  }
-
-  return { pass: true, message: '✅ Valid CSS! Great styling.' }
-}
-
-function validateGit({ lesson, code }) {
-  const lower = code.toLowerCase().trim()
-  const ch    = (lesson.challenge || '').toLowerCase()
-
-  if (!lower.includes('git ')) {
-    return { pass: false, message: '🌿 Your answer should use git commands (e.g. git add, git commit).' }
-  }
-  if (ch.includes('commit')) {
-    if (!lower.includes('git commit')) {
-      return { pass: false, message: '💾 Include a git commit command.' }
-    }
-    if (!lower.includes('-m ')) {
-      return { pass: false, message: '💬 Add a commit message with -m "your message".' }
-    }
-  }
-  if (ch.includes('branch')) {
-    if (!lower.includes('git branch') && !lower.includes('git checkout') && !lower.includes('git switch')) {
-      return { pass: false, message: '🌿 Include a git branch or checkout command.' }
-    }
-  }
-  if (ch.includes('push')) {
-    if (!lower.includes('git push')) {
-      return { pass: false, message: '🚀 Include a git push command.' }
-    }
-  }
-  if (ch.includes('add') || ch.includes('stage')) {
-    if (!lower.includes('git add')) {
-      return { pass: false, message: '📂 Use git add to stage your files first.' }
-    }
-  }
-
-  return { pass: true, message: '✅ Correct git commands!' }
-}
+function pass(message = '✅  Correct! Well done.')  { return { pass: true,  message } }
+function fail(message)                               { return { pass: false, message } }
 
 function getLang(courseId) {
-  if (['python', 'dsa'].includes(courseId)) return 'python'
-  if (['javascript', 'react'].includes(courseId)) return 'javascript'
+  if (['python','dsa'].includes(courseId)) return 'python'
+  if (['javascript','react'].includes(courseId))  return 'javascript'
   if (courseId === 'html') return 'html'
-  if (courseId === 'css') return 'css'
-  if (courseId === 'git') return 'git'
+  if (courseId === 'css')  return 'css'
+  if (courseId === 'git')  return 'git'
   return 'python'
 }
