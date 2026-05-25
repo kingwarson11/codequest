@@ -1,0 +1,31 @@
+import { Link } from 'react-router-dom'
+import styles from './NotFound.module.css'
+
+export default function NotFound() {
+  return (
+    <main className={styles.page}>
+      <div className={styles.content}>
+        <div className={styles.code}>404</div>
+        <div className={styles.terminal}>
+          <div className={styles.termBar}>
+            <span style={{background:'#ff5f57'}} className={styles.dot}/>
+            <span style={{background:'#ffbd2e'}} className={styles.dot}/>
+            <span style={{background:'#28c840'}} className={styles.dot}/>
+            <span className={styles.termTitle}>bash</span>
+          </div>
+          <div className={styles.termBody}>
+            <p><span className={styles.prompt}>$</span> cd <span className={styles.path}>{window.location.pathname}</span></p>
+            <p className={styles.error}>bash: cd: No such file or directory</p>
+            <p><span className={styles.prompt}>$</span> <span className={styles.cursor}>_</span></p>
+          </div>
+        </div>
+        <h1 className={styles.title}>Page not found</h1>
+        <p className={styles.desc}>Looks like this route doesn't exist. Maybe you took a wrong turn at the recursion base case.</p>
+        <div className={styles.actions}>
+          <Link to="/" className="btn btn-primary">← Go Home</Link>
+          <Link to="/courses" className="btn btn-outline">Browse Courses</Link>
+        </div>
+      </div>
+    </main>
+  )
+}
