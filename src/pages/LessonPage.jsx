@@ -2,7 +2,7 @@ import { useParams, Link } from 'react-router-dom'
 import { useState, useEffect, useRef } from 'react'
 import { getCourse } from '../data/courses'
 import { useProgress } from '../hooks/useProgress'
-import { validateChallenge } from '../utils/validateChallenge'
+import { validateChallenge } from '../utils/Validatechallenge'
 import styles from './LessonPage.module.css'
 
 function runJavaScript(code) {
