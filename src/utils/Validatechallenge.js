@@ -9,27 +9,27 @@ export function validateChallenge({ lesson, courseId, answer, output }) {
   const out    = (output || '').trim()
   const lang   = getLang(courseId)
 
-  // \u{2500}\u{2500} Step 1: Must have written something \u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}
+  // ── Step 1: Must have written something ──────────────────────────────────
   if (code.length < 5) {
-    return fail('\u{270F}\u{FE0F}  Write your solution first before submitting.')
+    return fail('✏️  Write your solution first before submitting.')
   }
 
-  // \u{2500}\u{2500} Step 2: Must have clicked Run first \u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}
+  // ── Step 2: Must have clicked Run first ──────────────────────────────────
   if (!output && lang !== 'html' && lang !== 'css') {
-    return fail('\u{25B6}  Click "Run My Code" first \u{2014} we need to see your output before we can check it.')
+    return fail('▶  Click "Run My Code" first — we need to see your output before we can check it.')
   }
 
-  // \u{2500}\u{2500} Step 3: No runtime errors allowed \u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}
-  if (out.startsWith('\u{274C}')) {
-    return fail(`\u{1F41B}  Fix the error in your code first:\n${out}`)
+  // ── Step 3: No runtime errors allowed ────────────────────────────────────
+  if (out.startsWith('❌')) {
+    return fail(`🐛  Fix the error in your code first:\n${out}`)
   }
 
-  // \u{2500}\u{2500} Step 4: Must produce output (for non-preview languages) \u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}
+  // ── Step 4: Must produce output (for non-preview languages) ──────────────
   if (!out && lang !== 'html' && lang !== 'css' && lang !== 'git') {
-    return fail('\u{1F4ED}  Your code ran but produced no output. Add a print() or console.log() to show your result.')
+    return fail('📭  Your code ran but produced no output. Add a print() or console.log() to show your result.')
   }
 
-  // \u{2500}\u{2500} Step 5: Lesson-specific checks \u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}
+  // ── Step 5: Lesson-specific checks ───────────────────────────────────────
   if (lesson.checks) {
     for (const check of lesson.checks) {
       const result = runCheck(check, code, out, lang)
@@ -37,19 +37,19 @@ export function validateChallenge({ lesson, courseId, answer, output }) {
     }
   }
 
-  // \u{2500}\u{2500} Step 6: Expected output matching \u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}
+  // ── Step 6: Expected output matching ─────────────────────────────────────
   if (lesson.expected_outputs) {
     for (const expected of lesson.expected_outputs) {
       if (!outContains(out, expected)) {
-        return fail(`\u{274C}  Expected your output to contain "${expected}" but it didn't.\n\nYour output:\n${out || '(empty)'}`)
+        return fail(`❌  Expected your output to contain "${expected}" but it didn't.\n\nYour output:\n${out || '(empty)'}`)
       }
     }
   }
 
-  return pass('\u{2705}  Correct! Well done.')
+  return pass('✅  Correct! Well done.')
 }
 
-// \u{2500}\u{2500} Run a single check rule \u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}
+// ── Run a single check rule ───────────────────────────────────────────────
 function runCheck(check, code, out, lang) {
   const codeLow = code.toLowerCase()
   const outLow  = out.toLowerCase()
@@ -115,7 +115,7 @@ function runCheck(check, code, out, lang) {
   return pass()
 }
 
-// \u{2500}\u{2500} Helpers \u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}\u{2500}
+// ── Helpers ──────────────────────────────────────────────────────────────
 function outContains(out, value) {
   return out.toLowerCase().includes(String(value).toLowerCase())
 }
@@ -124,7 +124,7 @@ function outContainsNumber(out, num) {
   return out.split(/[\s,\[\]()]+/).some(t => Number(t) === num)
 }
 
-function pass(message = '\u{2705}  Correct! Well done.')  { return { pass: true,  message } }
+function pass(message = '✅  Correct! Well done.')  { return { pass: true,  message } }
 function fail(message)                               { return { pass: false, message } }
 
 function getLang(courseId) {
