@@ -13,22 +13,22 @@ const DEFAULT_PROGRESS = {
 };
 
 const BADGES = [
-  { id: 'first_lesson',   title: 'First Steps',    emoji: '👣', desc: 'Complete your first lesson',       condition: p => Object.values(p.completedLessons).flat().length >= 1 },
-  { id: 'python_starter', title: 'Python Starter',  emoji: '🐍', desc: 'Complete 3 Python lessons',        condition: p => (p.completedLessons['python'] || []).length >= 3 },
-  { id: 'html_builder',   title: 'Web Builder',     emoji: '🏗️', desc: 'Complete 2 HTML lessons',          condition: p => (p.completedLessons['html'] || []).length >= 2 },
-  { id: 'css_artist',     title: 'CSS Artist',      emoji: '🎨', desc: 'Complete 3 CSS lessons',           condition: p => (p.completedLessons['css'] || []).length >= 3 },
-  { id: 'js_dev',         title: 'JS Developer',    emoji: '⚡', desc: 'Complete 3 JavaScript lessons',    condition: p => (p.completedLessons['javascript'] || []).length >= 3 },
-  { id: 'git_pro',        title: 'Git Pro',          emoji: '🌿', desc: 'Complete all Git lessons',         condition: p => (p.completedLessons['git'] || []).length >= 4 },
-  { id: 'algo_brain',     title: 'Algo Brain',      emoji: '🧩', desc: 'Complete 3 DSA lessons',           condition: p => (p.completedLessons['dsa'] || []).length >= 3 },
-  { id: 'xp_100',         title: 'XP Hunter',       emoji: '💥', desc: 'Earn 100 XP',                      condition: p => p.xp >= 100 },
-  { id: 'xp_500',         title: 'XP Warrior',      emoji: '🏆', desc: 'Earn 500 XP',                      condition: p => p.xp >= 500 },
-  { id: 'xp_1000',        title: 'XP Legend',       emoji: '👑', desc: 'Earn 1000 XP',                     condition: p => p.xp >= 1000 },
-  { id: 'streak_3',       title: 'On Fire!',        emoji: '🔥', desc: '3-day learning streak',            condition: p => p.streak >= 3 },
-  { id: 'streak_7',       title: 'Week Warrior',    emoji: '📅', desc: '7-day learning streak',            condition: p => p.streak >= 7 },
-  { id: 'multi_course',   title: 'Explorer',        emoji: '🗺️', desc: 'Start 3 different courses',        condition: p => Object.keys(p.completedLessons).length >= 3 },
-  { id: 'all_courses',    title: 'Completionist',   emoji: '🌍', desc: 'Start all 7 courses',              condition: p => Object.keys(p.completedLessons).length >= 7 },
-  { id: 'level_5',        title: 'Level 5!',        emoji: '🌟', desc: 'Reach Level 5',                    condition: p => p.level >= 5 },
-  { id: 'level_10',       title: 'Level 10!',       emoji: '💎', desc: 'Reach Level 10',                   condition: p => p.level >= 10 },
+  { id: 'first_lesson',   title: 'First Steps',    emoji: '\u{1F463}', desc: 'Complete your first lesson',       condition: p => Object.values(p.completedLessons).flat().length >= 1 },
+  { id: 'python_starter', title: 'Python Starter',  emoji: '\u{1F40D}', desc: 'Complete 3 Python lessons',        condition: p => (p.completedLessons['python'] || []).length >= 3 },
+  { id: 'html_builder',   title: 'Web Builder',     emoji: '\u{1F3D7}\u{FE0F}', desc: 'Complete 2 HTML lessons',          condition: p => (p.completedLessons['html'] || []).length >= 2 },
+  { id: 'css_artist',     title: 'CSS Artist',      emoji: '\u{1F3A8}', desc: 'Complete 3 CSS lessons',           condition: p => (p.completedLessons['css'] || []).length >= 3 },
+  { id: 'js_dev',         title: 'JS Developer',    emoji: '\u{26A1}', desc: 'Complete 3 JavaScript lessons',    condition: p => (p.completedLessons['javascript'] || []).length >= 3 },
+  { id: 'git_pro',        title: 'Git Pro',          emoji: '\u{1F33F}', desc: 'Complete all Git lessons',         condition: p => (p.completedLessons['git'] || []).length >= 4 },
+  { id: 'algo_brain',     title: 'Algo Brain',      emoji: '\u{1F9E9}', desc: 'Complete 3 DSA lessons',           condition: p => (p.completedLessons['dsa'] || []).length >= 3 },
+  { id: 'xp_100',         title: 'XP Hunter',       emoji: '\u{1F4A5}', desc: 'Earn 100 XP',                      condition: p => p.xp >= 100 },
+  { id: 'xp_500',         title: 'XP Warrior',      emoji: '\u{1F3C6}', desc: 'Earn 500 XP',                      condition: p => p.xp >= 500 },
+  { id: 'xp_1000',        title: 'XP Legend',       emoji: '\u{1F451}', desc: 'Earn 1000 XP',                     condition: p => p.xp >= 1000 },
+  { id: 'streak_3',       title: 'On Fire!',        emoji: '\u{1F525}', desc: '3-day learning streak',            condition: p => p.streak >= 3 },
+  { id: 'streak_7',       title: 'Week Warrior',    emoji: '\u{1F4C5}', desc: '7-day learning streak',            condition: p => p.streak >= 7 },
+  { id: 'multi_course',   title: 'Explorer',        emoji: '\u{1F5FA}\u{FE0F}', desc: 'Start 3 different courses',        condition: p => Object.keys(p.completedLessons).length >= 3 },
+  { id: 'all_courses',    title: 'Completionist',   emoji: '\u{1F30D}', desc: 'Start all 7 courses',              condition: p => Object.keys(p.completedLessons).length >= 7 },
+  { id: 'level_5',        title: 'Level 5!',        emoji: '\u{1F31F}', desc: 'Reach Level 5',                    condition: p => p.level >= 5 },
+  { id: 'level_10',       title: 'Level 10!',       emoji: '\u{1F48E}', desc: 'Reach Level 10',                   condition: p => p.level >= 10 },
 ];
 
 function calcLevel(xp) { return Math.floor(xp / 100) + 1; }
