@@ -23,7 +23,7 @@ export default function BadgeToast() {
       {visible.map(badge => (
         <div key={badge.id} className={styles.toast}>
           <div className={styles.glow} />
-          <span className={styles.icon}>{badge.emoji}</span>
+          <div className={styles.icon}>{badge.emoji}</div>
           <div className={styles.info}>
             <span className={styles.label}>Badge Unlocked!</span>
             <span className={styles.name}>{badge.title}</span>
