@@ -1,0 +1,36 @@
+import { useEffect, useState } from 'react'
+import { useProgress } from '../hooks/useProgress'
+import styles from './BadgeToast.module.css'
+
+export default function BadgeToast() {
+  const { newlyUnlockedBadges, clearNewBadges } = useProgress()
+  const [visible, setVisible] = useState([])
+
+  useEffect(() => {
+    if (newlyUnlockedBadges.length === 0) return
+    setVisible(newlyUnlockedBadges)
+    const t = setTimeout(() => {
+      setVisible([])
+      clearNewBadges()
+    }, 4000)
+    return () => clearTimeout(t)
+  }, [newlyUnlockedBadges.length])
+
+  if (visible.length === 0) return null
+
+  return (
+    <div className={styles.container}>
+      {visible.map(badge => (
+        <div key={badge.id} className={styles.toast}>
+          <div className={styles.glow} />
+          <span className={styles.icon}>{badge.emoji}</span>
+          <div className={styles.info}>
+            <span className={styles.label}>Badge Unlocked!</span>
+            <span className={styles.name}>{badge.title}</span>
+            <span className={styles.desc}>{badge.desc}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+}
