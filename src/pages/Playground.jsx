@@ -34,8 +34,8 @@ function runJavaScript(code) {
   const sandbox = {
     console: {
       log:   (...args) => logs.push(args.map(a => typeof a === 'object' ? JSON.stringify(a, null, 2) : String(a)).join(' ')),
-      error: (...args) => logs.push('❌ ' + args.join(' ')),
-      warn:  (...args) => logs.push('⚠️ ' + args.join(' ')),
+      error: (...args) => logs.push('\u{274C} ' + args.join(' ')),
+      warn:  (...args) => logs.push('\u{26A0}\u{FE0F} ' + args.join(' ')),
     },
     setTimeout: () => {},
     setInterval: () => {},
@@ -43,9 +43,9 @@ function runJavaScript(code) {
   try {
     const fn = new Function(...Object.keys(sandbox), code)
     fn(...Object.values(sandbox))
-    return logs.length ? logs.join('\n') : '✓ Executed (no console.log output)'
+    return logs.length ? logs.join('\n') : '\u{2713} Executed (no console.log output)'
   } catch (err) {
-    return `❌ ${err.name}: ${err.message}`
+    return `\u{274C} ${err.name}: ${err.message}`
   }
 }
 
@@ -64,7 +64,7 @@ export default function Playground() {
   useEffect(() => {
     if (lang.id !== 'python' || pyodideRef.current || pyodideLoading) return
     setPyodideLoading(true)
-    setOutput('⏳ Loading Python engine (one-time, ~5 seconds)...')
+    setOutput('\u{23F3} Loading Python engine (one-time, ~5 seconds)...')
 
     const script = document.createElement('script')
     script.src = 'https://cdn.jsdelivr.net/pyodide/v0.25.1/full/pyodide.js'
@@ -76,15 +76,15 @@ export default function Playground() {
         pyodideRef.current = pyodide
         setPyodideReady(true)
         setPyodideLoading(false)
-        setOutput('✅ Python ready! Click ▶ Run to execute your code.')
+        setOutput('\u{2705} Python ready! Click \u{25B6} Run to execute your code.')
       } catch (e) {
         setPyodideLoading(false)
-        setOutput('❌ Failed to load Python engine. Check your internet connection.')
+        setOutput('\u{274C} Failed to load Python engine. Check your internet connection.')
       }
     }
     script.onerror = () => {
       setPyodideLoading(false)
-      setOutput('❌ Failed to load Python engine. Check your internet connection.')
+      setOutput('\u{274C} Failed to load Python engine. Check your internet connection.')
     }
     document.head.appendChild(script)
   }, [lang.id])
@@ -106,7 +106,7 @@ export default function Playground() {
     }
     // CSS preview
     if (lang.id === 'css') {
-      const htmlWrap = `<!DOCTYPE html><html><head><style>${code}</style></head><body><div class="box">🎨</div></body></html>`
+      const htmlWrap = `<!DOCTYPE html><html><head><style>${code}</style></head><body><div class="box">\u{1F3A8}</div></body></html>`
       setShowPreview(true)
       setPreview(htmlWrap)
       return
@@ -121,11 +121,11 @@ export default function Playground() {
     if (lang.id === 'python') {
       setShowPreview(false)
       if (!pyodideRef.current) {
-        setOutput('⏳ Python engine is still loading, please wait...')
+        setOutput('\u{23F3} Python engine is still loading, please wait...')
         return
       }
       setRunning(true)
-      setOutput('⏳ Running...')
+      setOutput('\u{23F3} Running...')
       try {
         // Capture stdout
         pyodideRef.current.runPython(`
@@ -137,7 +137,7 @@ sys.stdout = io.StringIO()
         const result = pyodideRef.current.runPython('sys.stdout.getvalue()')
         // Restore stdout
         pyodideRef.current.runPython('sys.stdout = sys.__stdout__')
-        setOutput(result || '✓ Executed (no print output)')
+        setOutput(result || '\u{2713} Executed (no print output)')
       } catch (err) {
         // Restore stdout even on error
         try { pyodideRef.current.runPython('sys.stdout = sys.__stdout__') } catch (_) {}
@@ -145,7 +145,7 @@ sys.stdout = io.StringIO()
         const msg = String(err)
         const lines = msg.split('\n')
         const clean = lines.filter(l => !l.includes('File "<exec>"') && !l.includes('pyodide')).join('\n').trim()
-        setOutput('❌ ' + (clean || msg))
+        setOutput('\u{274C} ' + (clean || msg))
       }
       setRunning(false)
     }
@@ -162,15 +162,15 @@ sys.stdout = io.StringIO()
     }
   }
 
-  const runBtnLabel = running ? '⏳ Running...' : '▶ Run'
+  const runBtnLabel = running ? '\u{23F3} Running...' : '\u{25B6} Run'
 
   return (
     <main className={styles.page}>
       <div className={styles.header}>
         <div className={styles.headerLeft}>
-          <h1 className={styles.title}>🧪 Playground</h1>
+          <h1 className={styles.title}>\u{1F9EA} Playground</h1>
           <p className={styles.subtitle}>
-            Real code execution — Python runs via Pyodide (WebAssembly), JS runs natively.
+            Real code execution \u{2014} Python runs via Pyodide (WebAssembly), JS runs natively.
           </p>
         </div>
         <div className={styles.langTabs}>
@@ -209,7 +209,7 @@ sys.stdout = io.StringIO()
               onClick={handleRun}
               disabled={running || (lang.id === 'python' && pyodideLoading)}
             >
-              {lang.id === 'python' && pyodideLoading ? '⏳ Loading Python...' : runBtnLabel}
+              {lang.id === 'python' && pyodideLoading ? '\u{23F3} Loading Python...' : runBtnLabel}
             </button>
           </div>
           <textarea
@@ -225,7 +225,7 @@ sys.stdout = io.StringIO()
             <span>{showPreview ? 'Preview' : 'Output'}</span>
             <div style={{ display: 'flex', gap: 8 }}>
               <button className={styles.clearBtn} onClick={() => { setOutput(''); setPreview(''); setShowPreview(false) }}>Clear</button>
-              <button className={styles.resetBtn} onClick={() => { setCode(lang.starter); setOutput(''); setPreview(''); setShowPreview(false) }}>↺ Reset</button>
+              <button className={styles.resetBtn} onClick={() => { setCode(lang.starter); setOutput(''); setPreview(''); setShowPreview(false) }}>\u{21BA} Reset</button>
             </div>
           </div>
           {showPreview ? (
@@ -239,7 +239,7 @@ sys.stdout = io.StringIO()
             <div className={styles.output}>
               {output
                 ? output.split('\n').map((line, i) => <div key={i}>{line || '\u00A0'}</div>)
-                : <span className={styles.placeholder}>Click ▶ Run to execute your code</span>
+                : <span className={styles.placeholder}>Click \u{25B6} Run to execute your code</span>
               }
             </div>
           )}
@@ -247,8 +247,8 @@ sys.stdout = io.StringIO()
       </div>
 
       <div className={styles.tips}>
-        <span className={styles.tipsLabel}>💡 Tips:</span>
-        <span>Python executes <strong>for real</strong> — loops, functions, sorting all work correctly.</span>
+        <span className={styles.tipsLabel}>\u{1F4A1} Tips:</span>
+        <span>Python executes <strong>for real</strong> \u{2014} loops, functions, sorting all work correctly.</span>
         <span>JavaScript runs natively in your browser.</span>
         <span>HTML &amp; CSS show a live rendered preview.</span>
       </div>
