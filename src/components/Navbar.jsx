@@ -44,7 +44,7 @@ export default function Navbar() {
           {/* Streak badge */}
           {progress.streak >= 1 && (
             <div className={styles.streakBadge} title={`${progress.streak}-day streak`}>
-              🔥 {progress.streak}
+              \u{1F525} {progress.streak}
             </div>
           )}
 
@@ -84,7 +84,7 @@ export default function Navbar() {
           </Link>
         ))}
         {progress.streak >= 1 && (
-          <div className={styles.mobileStreak}>🔥 {progress.streak}-day streak</div>
+          <div className={styles.mobileStreak}>\u{1F525} {progress.streak}-day streak</div>
         )}
       </div>
     </nav>
