@@ -28,7 +28,7 @@ export default function Profile() {
       <div className="container">
         <div className={styles.layout}>
 
-          {/* ── Sidebar ── */}
+          {/* \u{2500}\u{2500} Sidebar \u{2500}\u{2500} */}
           <aside className={styles.sidebar}>
             <div className={styles.profileCard}>
 
@@ -56,7 +56,7 @@ export default function Profile() {
               ) : (
                 <div className={styles.nameRow}>
                   <h2 className={styles.playerName}>{progress.username || 'Coder'}</h2>
-                  <button className={styles.editBtn} onClick={() => { setNameInput(progress.username || 'Coder'); setEditingName(true) }} title="Edit name">✏️</button>
+                  <button className={styles.editBtn} onClick={() => { setNameInput(progress.username || 'Coder'); setEditingName(true) }} title="Edit name">\u{270F}\u{FE0F}</button>
                 </div>
               )}
 
@@ -65,7 +65,7 @@ export default function Profile() {
               {/* Streak */}
               {progress.streak >= 1 && (
                 <div className={styles.streakRow}>
-                  <span className={styles.streakFire}>🔥</span>
+                  <span className={styles.streakFire}>\u{1F525}</span>
                   <span className={styles.streakNum}>{progress.streak}-day streak</span>
                 </div>
               )}
@@ -123,14 +123,14 @@ export default function Profile() {
             </div>
           </aside>
 
-          {/* ── Main ── */}
+          {/* \u{2500}\u{2500} Main \u{2500}\u{2500} */}
           <div className={styles.main}>
 
             {/* Course progress */}
             <section className={styles.section}>
               <h2 className={styles.sectionTitle}>Course Progress</h2>
               {courses.map(course => {
-                // Use lessons_data.length as denominator — only count lessons that exist
+                // Use lessons_data.length as denominator \u{2014} only count lessons that exist
                 const builtLessons = course.lessons_data.length
                 const cp = getCourseProgress(course.id, builtLessons)
                 return (
@@ -150,12 +150,12 @@ export default function Profile() {
                         <div className="progress-bar-fill" style={{ width: `${cp.percent}%`, background: course.color }} />
                       </div>
                       <span className={styles.courseMeta}>
-                        {cp.done}/{cp.total} lessons complete · {course.xp} XP total
+                        {cp.done}/{cp.total} lessons complete \u{00B7} {course.xp} XP total
                       </span>
                     </div>
-                    {cp.done === 0   && <span className={styles.startLink}>Start →</span>}
-                    {cp.done > 0 && cp.percent < 100 && <span className={styles.continueLink} style={{ color: course.color }}>Continue →</span>}
-                    {cp.percent === 100 && <span className={styles.doneTag}>✓ Done</span>}
+                    {cp.done === 0   && <span className={styles.startLink}>Start \u{2192}</span>}
+                    {cp.done > 0 && cp.percent < 100 && <span className={styles.continueLink} style={{ color: course.color }}>Continue \u{2192}</span>}
+                    {cp.percent === 100 && <span className={styles.doneTag}>\u{2713} Done</span>}
                   </Link>
                 )
               })}
@@ -175,7 +175,7 @@ export default function Profile() {
                       <span className={styles.badgeTitle}>{b.title}</span>
                       <span className={styles.badgeDesc}>{b.desc}</span>
                     </div>
-                    <span className={styles.badgeDone}>✓</span>
+                    <span className={styles.badgeDone}>\u{2713}</span>
                   </div>
                 ))}
                 {lockedBadges.map(b => (
@@ -185,7 +185,7 @@ export default function Profile() {
                       <span className={styles.badgeTitle}>{b.title}</span>
                       <span className={styles.badgeDesc}>{b.desc}</span>
                     </div>
-                    <span className={styles.badgeLock}>🔒</span>
+                    <span className={styles.badgeLock}>\u{1F512}</span>
                   </div>
                 ))}
               </div>
