@@ -10,9 +10,9 @@ function runJavaScript(code) {
   const sandbox = {
     console: {
       log:   (...a) => logs.push(a.map(x => typeof x === 'object' ? JSON.stringify(x, null, 2) : String(x)).join(' ')),
-      error: (...a) => logs.push('\u{274C} ' + a.join(' ')),
-      warn:  (...a) => logs.push('\u{26A0}\u{FE0F}  ' + a.join(' ')),
-      info:  (...a) => logs.push('\u{2139}\u{FE0F}  ' + a.join(' ')),
+      error: (...a) => logs.push('❌ ' + a.join(' ')),
+      warn:  (...a) => logs.push('⚠️  ' + a.join(' ')),
+      info:  (...a) => logs.push('ℹ️  ' + a.join(' ')),
     },
     setTimeout: () => {}, setInterval: () => {},
     alert: (m) => logs.push('alert: ' + m),
@@ -20,9 +20,9 @@ function runJavaScript(code) {
   try {
     const fn = new Function(...Object.keys(sandbox), code)
     fn(...Object.values(sandbox))
-    return logs.length ? logs.join('\n') : '\u{2713} Executed (no console.log output)'
+    return logs.length ? logs.join('\n') : '✓ Executed (no console.log output)'
   } catch (err) {
-    return `\u{274C} ${err.name}: ${err.message}`
+    return `❌ ${err.name}: ${err.message}`
   }
 }
 
@@ -38,7 +38,7 @@ function getLang(courseId) {
 }
 
 function OutputBlock({ val, placeholder }) {
-  if (!val) return <span className={styles.outputPlaceholder}>{placeholder || 'Click \u{25B6} Run to see output'}</span>
+  if (!val) return <span className={styles.outputPlaceholder}>{placeholder || 'Click ▶ Run to see output'}</span>
   if (val.startsWith('__HTML__:')) return <iframe className={styles.preview} srcDoc={val.slice(9)} title="preview" sandbox="allow-scripts" />
   if (val.startsWith('__CSS__:')) {
     const wrap = `<!DOCTYPE html><html><head><style>${val.slice(8)}</style></head><body><div class="box" style="width:160px;height:160px;margin:40px auto;background:linear-gradient(135deg,#00ff9f,#7c3aed);border-radius:16px"></div></body></html>`
@@ -107,22 +107,22 @@ export default function LessonPage() {
     if (lang === 'css')  { setOut('__CSS__:' + src); return }
     if (lang === 'git') {
       const lines = src.split('\n').filter(l => l.trim() && !l.trim().startsWith('#'))
-      setOut(lines.map(l => `$ ${l.trim()}\n  \u{2713} command recognised`).join('\n'))
+      setOut(lines.map(l => `$ ${l.trim()}\n  ✓ command recognised`).join('\n'))
       return
     }
     if (lang === 'javascript') { setOut(runJavaScript(src)); return }
-    if (!pyodideRef.current) { setOut('\u{23F3} Python engine loading (~5s)\u{2026}'); return }
-    setLoad(true); setOut('\u{23F3} Running\u{2026}')
+    if (!pyodideRef.current) { setOut('⏳ Python engine loading (~5s)…'); return }
+    setLoad(true); setOut('⏳ Running…')
     try {
       pyodideRef.current.runPython(`import sys, io\nsys.stdout = io.StringIO()`)
       pyodideRef.current.runPython(src)
       const result = pyodideRef.current.runPython('sys.stdout.getvalue()')
       try { pyodideRef.current.runPython('sys.stdout = sys.__stdout__') } catch (_) {}
-      setOut(result || '\u{2713} Executed (no print output)')
+      setOut(result || '✓ Executed (no print output)')
     } catch (err) {
       try { pyodideRef.current.runPython('sys.stdout = sys.__stdout__') } catch (_) {}
       const msg = String(err).split('\n').filter(l => !l.includes('File "<exec>"') && !l.includes('pyodide')).join('\n').trim()
-      setOut('\u{274C} ' + (msg || String(err)))
+      setOut('❌ ' + (msg || String(err)))
     }
     setLoad(false)
   }
@@ -172,7 +172,7 @@ export default function LessonPage() {
   if (!course || !lesson) return (
     <div style={{ padding: '80px 24px', textAlign: 'center' }}>
       <h2>Lesson not found</h2>
-      <Link to={`/course/${courseId}`} className="btn btn-outline" style={{ marginTop: 16 }}>\u{2190} Back to Course</Link>
+      <Link to={`/course/${courseId}`} className="btn btn-outline" style={{ marginTop: 16 }}>{'←'} Back to Course</Link>
     </div>
   )
 
@@ -186,14 +186,14 @@ export default function LessonPage() {
     <main className={styles.page}>
       {xpAnim && (
         <div className="xp-float" style={{ left: xpAnim.x, top: xpAnim.y }}>
-          +{lesson.xp} XP \u{26A1}
+          +{lesson.xp} XP ⚡
         </div>
       )}
 
       {/* Top bar */}
       <div className={styles.topBar}>
         <div className={styles.topLeft}>
-          <Link to={`/course/${courseId}`} className={styles.back}>\u{2190} {course.title}</Link>
+          <Link to={`/course/${courseId}`} className={styles.back}>← {course.title}</Link>
           <span className={styles.lessonLabel}>{course.emoji} Lesson {lessonIdNum}: {lesson.title}</span>
         </div>
         <div className={styles.topRight}>
@@ -201,8 +201,8 @@ export default function LessonPage() {
             <div className={styles.barFill} style={{ width: `${progress}%`, background: course.color }} />
           </div>
           <span className={styles.barLabel}>{lessonIndex + 1}/{course.lessons_data.length}</span>
-          {alreadyDone && <span className={styles.doneTag}>\u{2713} Completed</span>}
-          {pyLoading && <span className={styles.doneTag} style={{ color:'#fbbf24', borderColor:'rgba(251,191,36,0.3)' }}>\u{23F3} Loading Python\u{2026}</span>}
+          {alreadyDone && <span className={styles.doneTag}>{'✓'} Completed</span>}
+          {pyLoading && <span className={styles.doneTag} style={{ color:'#fbbf24', borderColor:'rgba(251,191,36,0.3)' }}>{'⏳'} Loading Python{'…'}</span>}
           <span className={styles.xpTag} style={{ color: course.color }}>+{lesson.xp} XP</span>
         </div>
       </div>
@@ -216,14 +216,14 @@ export default function LessonPage() {
             style={tab === t ? { borderColor: course.color, color: course.color } : {}}
             onClick={() => setTab(t)}
           >
-            {t === 'theory' ? '\u{1F4D6} Theory' : t === 'code' ? '\u{1F4BB} Code' : '\u{1F3AF} Challenge'}
+            {t === 'theory' ? '📖 Theory' : t === 'code' ? '💻 Code' : '🎯 Challenge'}
           </button>
         ))}
       </div>
 
       <div className={styles.content}>
 
-        {/* \u{2500}\u{2500} THEORY \u{2500}\u{2500} */}
+        {/* ── THEORY ── */}
         {tab === 'theory' && (
           <div className={styles.theory}>
             <div className={styles.theoryContent}>
@@ -238,14 +238,14 @@ export default function LessonPage() {
               </div>
               <div className={styles.theoryActions}>
                 <button className={styles.nextTabBtn} style={{ background: course.color }} onClick={() => setTab('code')}>
-                  Try the Code \u{2192}
+                  Try the Code →
                 </button>
               </div>
             </div>
           </div>
         )}
 
-        {/* \u{2500}\u{2500} CODE \u{2500}\u{2500} */}
+        {/* ── CODE ── */}
         {tab === 'code' && (
           <div className={styles.codeTab}>
             <div className={styles.editorPanel}>
@@ -255,7 +255,7 @@ export default function LessonPage() {
                 </div>
                 <span className={styles.filename}>{filename}</span>
                 <button className={styles.runBtn} onClick={handleRunCode} disabled={running || (lang==='python' && pyLoading)} title='Run code (Ctrl+Enter)'>
-                  {lang==='python' && pyLoading ? '\u{23F3} Loading Python\u{2026}' : running ? '\u{23F3} Running\u{2026}' : '\u{25B6} Run'}
+                  {lang==='python' && pyLoading ? '⏳ Loading Python…' : running ? '⏳ Running…' : '▶ Run'}
                 </button>
               </div>
               <textarea className={styles.editor} value={code} onChange={e => setCode(e.target.value)} spellCheck={false} />
@@ -266,30 +266,30 @@ export default function LessonPage() {
                 <button className={styles.clearBtn} onClick={() => setOutput('')}>Clear</button>
               </div>
               <div className={isPreview ? styles.previewWrap : styles.output}>
-                <OutputBlock val={output} placeholder="Click \u{25B6} Run to see output" />
+                <OutputBlock val={output} placeholder="Click ▶ Run to see output" />
               </div>
               <div className={styles.editorActions}>
-                <button className={styles.resetBtn} onClick={() => { setCode(lesson.code); setOutput('') }}>\u{21BA} Reset</button>
+                <button className={styles.resetBtn} onClick={() => { setCode(lesson.code); setOutput('') }}>{'↺'} Reset</button>
                 <button className={styles.nextTabBtn2} style={{ background: course.color }} onClick={() => setTab('challenge')}>
-                  Go to Challenge \u{2192}
+                  Go to Challenge →
                 </button>
               </div>
             </div>
           </div>
         )}
 
-        {/* \u{2500}\u{2500} CHALLENGE \u{2500}\u{2500} */}
+        {/* ── CHALLENGE ── */}
         {tab === 'challenge' && (
           <div className={styles.challengeTab}>
             {!completed ? (
               <div className={styles.challengeBox}>
-                <div className={styles.challengeIcon}>\u{1F3AF}</div>
+                <div className={styles.challengeIcon}>{'🎯'}</div>
                 <h2 className={styles.challengeTitle}>Challenge</h2>
                 <p className={styles.challengeDesc}>{lesson.challenge}</p>
 
                 {showHint && (
                   <div className={styles.hint}>
-                    <span className={styles.hintLabel}>\u{1F4A1} Hint</span>
+                    <span className={styles.hintLabel}>{'💡'} Hint</span>
                     <p>{lesson.hint}</p>
                   </div>
                 )}
@@ -307,12 +307,12 @@ export default function LessonPage() {
                         onClick={handleRunChallenge}
                         disabled={challengeRunning || challengeAnswer.trim().length < 2 || (lang==='python' && pyLoading)}
                       >
-                        {lang==='python' && pyLoading ? '\u{23F3} Loading\u{2026}' : challengeRunning ? '\u{23F3} Running\u{2026}' : '\u{25B6} Run My Code'}
+                        {lang==='python' && pyLoading ? '⏳ Loading…' : challengeRunning ? '⏳ Running…' : '▶ Run My Code'}
                       </button>
                     </div>
                     <textarea
                       className={styles.editor}
-                      placeholder={`Write your ${lang === 'git' ? 'git commands' : lang} solution here\u{2026}`}
+                      placeholder={`Write your ${lang === 'git' ? 'git commands' : lang} solution here…`}
                       value={challengeAnswer}
                       onChange={e => { setChallengeAnswer(e.target.value); setValidationMsg(''); setValidationOk(null) }}
                       spellCheck={false}
@@ -345,7 +345,7 @@ export default function LessonPage() {
 
                 <div className={styles.challengeActions}>
                   <button className={styles.hintBtn} onClick={() => setShowHint(!showHint)}>
-                    {showHint ? 'Hide Hint' : '\u{1F4A1} Show Hint'}
+                    {showHint ? 'Hide Hint' : '💡 Show Hint'}
                   </button>
                   <button
                     className={styles.completeBtn}
@@ -353,13 +353,13 @@ export default function LessonPage() {
                     onClick={handleSubmit}
                     disabled={challengeAnswer.trim().length < 5}
                   >
-                    \u{2713} Submit Answer (+{lesson.xp} XP)
+                    ✓ Submit Answer (+{lesson.xp} XP)
                   </button>
                 </div>
               </div>
             ) : (
               <div className={styles.completedBox}>
-                <div className={styles.completedEmoji}>\u{1F389}</div>
+                <div className={styles.completedEmoji}>{'🎉'}</div>
                 <h2>Lesson Complete!</h2>
                 <p>You earned <strong style={{ color: course.color }}>+{lesson.xp} XP</strong></p>
                 <div className={styles.completedActions}>
@@ -370,11 +370,11 @@ export default function LessonPage() {
                       style={{ background: course.color }}
                       onClick={() => { setCompleted(false); setTab('theory'); setOutput(''); setChallengeAnswer(''); setChallengeOutput(''); setShowHint(false); setValidationMsg(''); setValidationOk(null) }}
                     >
-                      Next Lesson: {nextLesson.title} \u{2192}
+                      Next Lesson: {nextLesson.title} →
                     </Link>
                   ) : (
                     <Link to={`/course/${courseId}`} className={styles.nextLessonBtn} style={{ background: course.color }}>
-                      \u{2190} Back to Course
+                      ← Back to Course
                     </Link>
                   )}
                   <Link to="/courses" className="btn btn-outline">All Courses</Link>
