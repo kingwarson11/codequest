@@ -25,7 +25,7 @@ export default function Courses() {
           <div>
             <h1 className={styles.title}>All Courses</h1>
             <p className={styles.subtitle}>
-              {courses.length} courses \u{00B7} Learn at your own pace \u{00B7} Earn XP on every lesson
+              {courses.length} courses · Learn at your own pace · Earn XP on every lesson
             </p>
           </div>
           <div className={styles.controls}>
@@ -65,7 +65,7 @@ export default function Courses() {
                   <div className={styles.badges}>
                     <span className={styles.diffBadge}>{course.difficulty}</span>
                     {cp.done > 0 && cp.percent === 100 && (
-                      <span className={styles.doneBadge}>\u{2713} Done</span>
+                      <span className={styles.doneBadge}>{'✓'} Done</span>
                     )}
                     {cp.done > 0 && cp.percent < 100 && (
                       <span className={styles.inProgressBadge}>In Progress</span>
@@ -87,9 +87,9 @@ export default function Courses() {
 
                 <div className={styles.cardFooter}>
                   <div className={styles.meta}>
-                    <span>\u{1F4DA} {course.lessons} lessons</span>
-                    <span>\u{1F6E0}\u{FE0F} {course.projects} projects</span>
-                    <span className={styles.xp}>\u{26A1} {course.xp} XP</span>
+                    <span>📚 {course.lessons} lessons</span>
+                    <span>🛠️ {course.projects} projects</span>
+                    <span className={styles.xp}>⚡ {course.xp} XP</span>
                   </div>
                   {cp.done > 0 ? (
                     <div className={styles.progress}>
@@ -102,7 +102,7 @@ export default function Courses() {
                       </div>
                     </div>
                   ) : (
-                    <span className={styles.startBtn}>Start Course \u{2192}</span>
+                    <span className={styles.startBtn}>Start Course {'→'}</span>
                   )}
                 </div>
               </Link>
@@ -112,7 +112,7 @@ export default function Courses() {
 
         {filtered.length === 0 && (
           <div className={styles.empty}>
-            <span>\u{1F50D}</span>
+            <span>{'🔍'}</span>
             <p>No courses match your search.</p>
             <button className="btn btn-outline" onClick={() => { setSearch(''); setFilter('All') }}>Clear filters</button>
           </div>
