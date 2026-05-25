@@ -267,9 +267,9 @@ export const courses = [
       {
         id:7, title:"Semantic HTML", xp:25,
         theory:"Semantic tags describe the **purpose** of content:\n- `<header>` {'—'} page header\n- `<nav>` {'—'} navigation\n- `<main>` {'—'} main content\n- `<article>` {'—'} self-contained content\n- `<section>` {'—'} thematic group\n- `<aside>` {'—'} sidebar\n- `<footer>` — footer\n\nHelps SEO and accessibility.",
-        code:'<header><h1>My Blog</h1><nav><a href="/">Home</a></nav></header>\n<main>\n  <article><h2>Post Title</h2><p>Content...</p></article>\n  <aside><p>About me sidebar</p></aside>\n</main>\n<footer><p>{'©'} 2025</p></footer>',
+        code:'<header><h1>My Blog</h1><nav><a href="/">Home</a></nav></header>\n<main>\n  <article><h2>Post Title</h2><p>Content...</p></article>\n  <aside><p>About me sidebar</p></aside>\n</main>\n<footer><p>&copy; 2025</p></footer>',
         challenge:"Rebuild a webpage layout using ONLY semantic tags. No <div> allowed. Include: header with nav, main with an article and aside, and a footer with copyright text.",
-        hint:'<header><nav>...</nav></header>\n<main><article>...</article><aside>...</aside></main>\n<footer><p>{'©'} 2025</p></footer>',
+        hint:'<header><nav>...</nav></header>\n<main><article>...</article><aside>...</aside></main>\n<footer><p>&copy; 2025</p></footer>',
         checks:[
           {type:"code_contains",   value:"<header>",  message:"Add a <header> element."},
           {type:"code_contains",   value:"<nav>",     message:"Add a <nav> inside the header."},
