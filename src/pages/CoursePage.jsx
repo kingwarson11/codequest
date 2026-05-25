@@ -15,7 +15,7 @@ export default function CoursePage() {
     </div>
   )
 
-  const cp = getCourseProgress(courseId, course.lessons)
+  const cp = getCourseProgress(courseId, course.lessons_data.length)
 
   return (
     <main className={styles.page}>
