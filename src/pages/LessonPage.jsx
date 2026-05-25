@@ -134,6 +134,21 @@ export default function LessonPage() {
     await execCode(challengeAnswer, setChallengeOutput, setChallengeRunning)
   }
 
+  // Ctrl+Enter / Cmd+Enter to run code
+  useEffect(() => {
+    const handler = (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+        e.preventDefault()
+        if (tab === 'code') handleRunCode()
+        if (tab === 'challenge' && challengeAnswer.trim().length >= 2) handleRunChallenge()
+      }
+    }
+    window.addEventListener('keydown', handler)
+    return () => window.removeEventListener('keydown', handler)
+  }, [tab, code, challengeAnswer, running, challengeRunning])
+
+
+
   const handleSubmit = () => {
     const result = validateChallenge({
       lesson,
@@ -239,7 +254,7 @@ export default function LessonPage() {
                   <span style={{ background:'#ff5f57' }} /><span style={{ background:'#ffbd2e' }} /><span style={{ background:'#28c840' }} />
                 </div>
                 <span className={styles.filename}>{filename}</span>
-                <button className={styles.runBtn} onClick={handleRunCode} disabled={running || (lang==='python' && pyLoading)}>
+                <button className={styles.runBtn} onClick={handleRunCode} disabled={running || (lang==='python' && pyLoading)} title='Run code (Ctrl+Enter)'>
                   {lang==='python' && pyLoading ? '⏳ Loading Python…' : running ? '⏳ Running…' : '▶ Run'}
                 </button>
               </div>
