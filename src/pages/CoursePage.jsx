@@ -11,7 +11,7 @@ export default function CoursePage() {
   if (!course) return (
     <div style={{ padding: '80px 24px', textAlign: 'center' }}>
       <h2>Course not found</h2>
-      <Link to="/courses" className="btn btn-outline" style={{ marginTop: 16 }}>← Back to Courses</Link>
+      <Link to="/courses" className="btn btn-outline" style={{ marginTop: 16 }}>\u{2190} Back to Courses</Link>
     </div>
   )
 
@@ -23,15 +23,15 @@ export default function CoursePage() {
       <div className={styles.hero} style={{ '--c': course.color }}>
         <div className={styles.heroBg} />
         <div className="container">
-          <Link to="/courses" className={styles.back}>← All Courses</Link>
+          <Link to="/courses" className={styles.back}>\u{2190} All Courses</Link>
           <div className={styles.heroContent}>
             <span className={styles.emoji}>{course.emoji}</span>
             <div>
               <div className={styles.meta}>
                 <span className={styles.diffTag}>{course.difficulty}</span>
-                <span className={styles.metaItem}>📚 {course.lessons} lessons</span>
-                <span className={styles.metaItem}>🛠️ {course.projects} projects</span>
-                <span className={styles.metaItem}>⚡ {course.xp} XP</span>
+                <span className={styles.metaItem}>\u{1F4DA} {course.lessons} lessons</span>
+                <span className={styles.metaItem}>\u{1F6E0}\u{FE0F} {course.projects} projects</span>
+                <span className={styles.metaItem}>\u{26A1} {course.xp} XP</span>
               </div>
               <h1 className={styles.title}>{course.title}</h1>
               <p className={styles.desc}>{course.description}</p>
@@ -51,7 +51,7 @@ export default function CoursePage() {
                 className={styles.startBtn}
                 style={{ background: course.color }}
               >
-                {cp.done > 0 ? 'Continue Learning' : 'Start Course'} →
+                {cp.done > 0 ? 'Continue Learning' : 'Start Course'} \u{2192}
               </Link>
             </div>
           </div>
@@ -68,7 +68,7 @@ export default function CoursePage() {
               <div className={styles.topics}>
                 {course.topics.map(t => (
                   <div key={t} className={styles.topicItem}>
-                    <span className={styles.check} style={{ color: course.color }}>✓</span>
+                    <span className={styles.check} style={{ color: course.color }}>\u{2713}</span>
                     {t}
                   </div>
                 ))}
@@ -88,20 +88,20 @@ export default function CoursePage() {
                       className={`${styles.lessonItem} ${done ? styles.lessonDone : ''}`}
                     >
                       <div className={styles.lessonNum} style={{ borderColor: done ? course.color : 'var(--border)' }}>
-                        {done ? <span style={{ color: course.color }}>✓</span> : i + 1}
+                        {done ? <span style={{ color: course.color }}>\u{2713}</span> : i + 1}
                       </div>
                       <div className={styles.lessonInfo}>
                         <span className={styles.lessonTitle}>{lesson.title}</span>
                         <span className={styles.lessonXP}>+{lesson.xp} XP</span>
                       </div>
-                      <span className={styles.lessonArrow}>→</span>
+                      <span className={styles.lessonArrow}>\u{2192}</span>
                     </Link>
                   )
                 })}
                 {/* Placeholder locked lessons */}
                 {Array.from({ length: course.lessons - course.lessons_data.length }, (_, i) => (
                   <div key={`locked-${i}`} className={`${styles.lessonItem} ${styles.lessonLocked}`}>
-                    <div className={styles.lessonNum}>🔒</div>
+                    <div className={styles.lessonNum}>\u{1F512}</div>
                     <div className={styles.lessonInfo}>
                       <span className={styles.lessonTitle}>Coming Soon</span>
                       <span className={styles.lessonXP}>+20 XP</span>
@@ -122,11 +122,11 @@ export default function CoursePage() {
                         color: p.difficulty === 'Easy' ? '#10b981' : p.difficulty === 'Medium' ? '#f59e0b' : '#ef4444',
                         background: p.difficulty === 'Easy' ? 'rgba(16,185,129,0.1)' : p.difficulty === 'Medium' ? 'rgba(245,158,11,0.1)' : 'rgba(239,68,68,0.1)',
                       }}>{p.difficulty}</span>
-                      <span className={styles.projXP}>⚡ {p.xp} XP</span>
+                      <span className={styles.projXP}>\u{26A1} {p.xp} XP</span>
                     </div>
                     <h3 className={styles.projTitle}>{p.title}</h3>
                     <button className={styles.projBtn} style={{ borderColor: course.color, color: course.color }}>
-                      View Project →
+                      View Project \u{2192}
                     </button>
                   </div>
                 ))}
