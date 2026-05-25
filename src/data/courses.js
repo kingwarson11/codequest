@@ -1,13 +1,13 @@
 export const courses = [
-  // ════════════════════════════════════════════════════════════
+  // \u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}
   //  PYTHON
-  // ════════════════════════════════════════════════════════════
+  // \u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}
   {
-    id:"python", title:"Python", emoji:"🐍",
+    id:"python", title:"Python", emoji:"\u{1F40D}",
     tagline:"The language of AI & automation",
     color:"#3b82f6", accent:"#60a5fa",
     xp:500, lessons:24, projects:4, difficulty:"Beginner",
-    description:"Start your coding journey with Python — clean syntax, powerful libraries, and endless possibilities.",
+    description:"Start your coding journey with Python \u{2014} clean syntax, powerful libraries, and endless possibilities.",
     topics:["Variables & Types","Control Flow","Functions","Lists & Dicts","OOP","File I/O","Modules","Error Handling"],
     projects_list:[
       {title:"Number Guessing Game",difficulty:"Easy",xp:50},
@@ -38,15 +38,15 @@ export const courses = [
         hint:'x = "hello"\ny = 42\nz = 3.14\nb = True\nprint(type(x))\nprint(type(y))\nprint(type(z))\nprint(type(b))',
         checks:[
           {type:"code_contains",  value:"type(",   message:"Use type() to show the type of your variables."},
-          {type:"output_lines_gte",value:4,         message:"Print the type of at least 4 different variables — you should have at least 4 lines of output."},
+          {type:"output_lines_gte",value:4,         message:"Print the type of at least 4 different variables \u{2014} you should have at least 4 lines of output."},
           {type:"output_contains", value:"<class '",message:"Your output should show class types like <class 'str'>."},
         ],
         expected_outputs:[]
       },
       {
         id:3, title:"If / Else Statements", xp:25,
-        theory:"Conditional statements let your program make decisions.\n- `if` checks a condition — if True, that block runs\n- `elif` adds more conditions\n- `else` runs when nothing else matches\n\nPython uses **indentation** (4 spaces) to define blocks.",
-        code:'score = 85\n\nif score >= 90:\n    print("A — Excellent!")\nelif score >= 80:\n    print("B — Great job!")\nelif score >= 70:\n    print("C — Good effort")\nelse:\n    print("Keep practicing!")',
+        theory:"Conditional statements let your program make decisions.\n- `if` checks a condition \u{2014} if True, that block runs\n- `elif` adds more conditions\n- `else` runs when nothing else matches\n\nPython uses **indentation** (4 spaces) to define blocks.",
+        code:'score = 85\n\nif score >= 90:\n    print("A \u{2014} Excellent!")\nelif score >= 80:\n    print("B \u{2014} Great job!")\nelif score >= 70:\n    print("C \u{2014} Good effort")\nelse:\n    print("Keep practicing!")',
         challenge:"Write a program that stores a number in a variable called `num`. If it's positive print 'positive', if negative print 'negative', if zero print 'zero'. Test with num = -7.",
         hint:'num = -7\nif num > 0:\n    print("positive")\nelif num < 0:\n    print("negative")\nelse:\n    print("zero")',
         checks:[
@@ -66,7 +66,7 @@ export const courses = [
         checks:[
           {type:"code_contains",  value:"for ",     message:"Use a for loop."},
           {type:"code_contains",  value:"range(",   message:"Use range() to generate numbers."},
-          {type:"output_contains",value:"10",       message:"The numbers 1–10 should appear in your output."},
+          {type:"output_contains",value:"10",       message:"The numbers 1\u{2013}10 should appear in your output."},
           {type:"output_contains",value:"20",       message:"The even numbers up to 20 should appear in your output."},
           {type:"output_lines_gte",value:20,        message:"You should print at least 20 lines total (10 numbers + 10 evens)."},
         ],
@@ -75,14 +75,14 @@ export const courses = [
       {
         id:5, title:"While Loops", xp:25,
         theory:"A `while` loop keeps running **as long as a condition is True**.\n\nAlways make sure something changes inside the loop to avoid an infinite loop!\n\n- `break` exits the loop immediately\n- `continue` skips to the next iteration",
-        code:'countdown = 5\nwhile countdown > 0:\n    print(f"T-minus {countdown}")\n    countdown -= 1\nprint("Blast off! 🚀")',
+        code:'countdown = 5\nwhile countdown > 0:\n    print(f"T-minus {countdown}")\n    countdown -= 1\nprint("Blast off! \u{1F680}")',
         challenge:"Write a while loop that starts at n = 1 and keeps doubling it (n = n * 2) until n is greater than 100. Print every value of n including the final one that exceeds 100.",
         hint:'n = 1\nwhile n <= 100:\n    print(n)\n    n *= 2\nprint(n)',
         checks:[
           {type:"code_contains",  value:"while ",    message:"Use a while loop."},
           {type:"code_contains",  value:"*= 2",      message:"Double the value using *= 2 (or n = n * 2)."},
           {type:"output_contains",value:"128",       message:"Your output should include 128 (the first value over 100 when doubling from 1)."},
-          {type:"output_contains",value:"1",         message:"Start from 1 — it should appear in your output."},
+          {type:"output_contains",value:"1",         message:"Start from 1 \u{2014} it should appear in your output."},
         ],
         expected_outputs:[]
       },
@@ -90,7 +90,7 @@ export const courses = [
         id:6, title:"Functions", xp:30,
         theory:"Functions are reusable blocks of code. Define once, use many times.\n\n- `def` keyword defines a function\n- Parameters are inputs\n- `return` sends a value back\n\n**DRY principle**: Don't Repeat Yourself.",
         code:'def greet(name):\n    return f"Hello, {name}!"\n\ndef add(a, b):\n    return a + b\n\nprint(greet("Alex"))\nprint(add(3, 7))',
-        challenge:"Write a function called `factorial` that takes one parameter `n` and returns n! (n factorial). factorial(5) = 5×4×3×2×1 = 120. Test it by printing factorial(5).",
+        challenge:"Write a function called `factorial` that takes one parameter `n` and returns n! (n factorial). factorial(5) = 5\u{00D7}4\u{00D7}3\u{00D7}2\u{00D7}1 = 120. Test it by printing factorial(5).",
         hint:'def factorial(n):\n    if n <= 1:\n        return 1\n    return n * factorial(n - 1)\nprint(factorial(5))',
         checks:[
           {type:"code_contains",   value:"def factorial", message:"Define a function called `factorial`."},
@@ -101,14 +101,14 @@ export const courses = [
       },
       {
         id:7, title:"Lists", xp:25,
-        theory:"Lists are ordered, changeable collections.\n\nKey methods:\n- `append(x)` — add to end\n- `remove(x)` — remove first match\n- `sort()` — sort in place\n- `len(list)` — number of items\n- `list[i]` — access by index",
+        theory:"Lists are ordered, changeable collections.\n\nKey methods:\n- `append(x)` \u{2014} add to end\n- `remove(x)` \u{2014} remove first match\n- `sort()` \u{2014} sort in place\n- `len(list)` \u{2014} number of items\n- `list[i]` \u{2014} access by index",
         code:'fruits = ["apple","banana","cherry"]\nfruits.append("mango")\nprint(fruits)\nprint(len(fruits))\nsquares = [x**2 for x in range(1,6)]\nprint(squares)',
         challenge:"Create a list of 5 numbers. Without using sum(), max(), or min() built-ins, use a for loop to calculate the total sum and find the largest number. Print both.",
         hint:'nums = [3, 7, 1, 9, 4]\ntotal = 0\nbiggest = nums[0]\nfor n in nums:\n    total += n\n    if n > biggest:\n        biggest = n\nprint(total)\nprint(biggest)',
         checks:[
           {type:"code_contains",  value:"for ",    message:"Use a for loop to calculate the sum and max."},
-          {type:"code_not_contains",value:"sum(",  message:"Do not use the built-in sum() function — calculate it yourself with a loop."},
-          {type:"code_not_contains",value:"max(",  message:"Do not use the built-in max() function — find it yourself with a loop."},
+          {type:"code_not_contains",value:"sum(",  message:"Do not use the built-in sum() function \u{2014} calculate it yourself with a loop."},
+          {type:"code_not_contains",value:"max(",  message:"Do not use the built-in max() function \u{2014} find it yourself with a loop."},
           {type:"output_lines_gte",value:2,        message:"Print both the sum and the maximum number."},
         ],
         expected_outputs:[]
@@ -146,7 +146,7 @@ export const courses = [
         id:10, title:"Classes & OOP", xp:35,
         theory:"OOP organises code into **objects** with properties and behaviours.\n\n- `class` defines the blueprint\n- `__init__` runs when you create an object\n- `self` refers to the current object\n- **Inheritance**: a class can inherit from another",
         code:'class Animal:\n    def __init__(self, name, sound):\n        self.name = name\n        self.sound = sound\n    def speak(self):\n        return f"{self.name} says {self.sound}!"\n\nclass Dog(Animal):\n    def __init__(self, name):\n        super().__init__(name, "Woof")\n\ndog = Dog("Rex")\nprint(dog.speak())',
-        challenge:"Create a `BankAccount` class with `balance = 0`. Add a `deposit(amount)` method that adds to balance, and a `withdraw(amount)` method that subtracts — but never lets balance go below 0 (print 'Insufficient funds' if it would). Test by depositing 100, withdrawing 40, then withdrawing 200.",
+        challenge:"Create a `BankAccount` class with `balance = 0`. Add a `deposit(amount)` method that adds to balance, and a `withdraw(amount)` method that subtracts \u{2014} but never lets balance go below 0 (print 'Insufficient funds' if it would). Test by depositing 100, withdrawing 40, then withdrawing 200.",
         hint:'class BankAccount:\n    def __init__(self):\n        self.balance = 0\n    def deposit(self, amount):\n        self.balance += amount\n        print(f"Balance: {self.balance}")\n    def withdraw(self, amount):\n        if amount > self.balance:\n            print("Insufficient funds")\n        else:\n            self.balance -= amount\n            print(f"Balance: {self.balance}")',
         checks:[
           {type:"code_contains",   value:"class BankAccount",   message:"Define a class called BankAccount."},
@@ -160,15 +160,15 @@ export const courses = [
     ]
   },
 
-  // ════════════════════════════════════════════════════════════
+  // \u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}
   //  HTML
-  // ════════════════════════════════════════════════════════════
+  // \u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}
   {
-    id:"html", title:"HTML", emoji:"🏗️",
+    id:"html", title:"HTML", emoji:"\u{1F3D7}\u{FE0F}",
     tagline:"The skeleton of every website",
     color:"#f97316", accent:"#fb923c",
     xp:350, lessons:18, projects:3, difficulty:"Beginner",
-    description:"Learn to structure web content with HTML — the foundation of every website.",
+    description:"Learn to structure web content with HTML \u{2014} the foundation of every website.",
     topics:["Document Structure","Text Elements","Links & Images","Lists & Tables","Forms","Semantic HTML","Media","Accessibility"],
     projects_list:[
       {title:"Personal Portfolio Page",difficulty:"Easy",xp:60},
@@ -178,7 +178,7 @@ export const courses = [
     lessons_data:[
       {
         id:1, title:"Your First HTML Page", xp:20,
-        theory:"HTML uses **tags** to structure content. Every page has:\n- `<!DOCTYPE html>` — declares HTML5\n- `<html>` — root element\n- `<head>` — metadata (title, charset)\n- `<body>` — visible content\n\nTags come in pairs: `<p>text</p>`.",
+        theory:"HTML uses **tags** to structure content. Every page has:\n- `<!DOCTYPE html>` \u{2014} declares HTML5\n- `<html>` \u{2014} root element\n- `<head>` \u{2014} metadata (title, charset)\n- `<body>` \u{2014} visible content\n\nTags come in pairs: `<p>text</p>`.",
         code:'<!DOCTYPE html>\n<html lang="en">\n<head>\n  <meta charset="UTF-8">\n  <title>My First Page</title>\n</head>\n<body>\n  <h1>Hello World!</h1>\n  <p>This is my first webpage.</p>\n</body>\n</html>',
         challenge:"Write a complete HTML page with the DOCTYPE, html, head (with a title), and body. In the body add an h1 heading and two p paragraphs. The title must say 'My Page'.",
         hint:'<!DOCTYPE html>\n<html><head><title>My Page</title></head>\n<body><h1>Heading</h1><p>Para 1</p><p>Para 2</p></body></html>',
@@ -193,7 +193,7 @@ export const courses = [
       },
       {
         id:2, title:"Headings & Text Formatting", xp:20,
-        theory:"Headings h1–h6 define hierarchy. Text formatting:\n- `<strong>` — bold\n- `<em>` — italic\n- `<br>` — line break\n- `<hr>` — horizontal rule\n\nUse headings for structure, not styling!",
+        theory:"Headings h1\u{2013}h6 define hierarchy. Text formatting:\n- `<strong>` \u{2014} bold\n- `<em>` \u{2014} italic\n- `<br>` \u{2014} line break\n- `<hr>` \u{2014} horizontal rule\n\nUse headings for structure, not styling!",
         code:'<h1>Main Title</h1>\n<h2>Section</h2>\n<p>This is <strong>bold</strong> and <em>italic</em>.</p>\n<p>Line one.<br>Same paragraph, new line.</p>\n<hr>\n<h3>Sub-section</h3>',
         challenge:"Create an HTML snippet about your favourite book. Use h1 for the title, h2 for 'Summary' and 'Author', p tags for content. Make the book title inside a paragraph bold and the genre italic.",
         hint:'<h1>Book Title</h1>\n<h2>Summary</h2>\n<p>This book is <strong>amazing</strong> and is <em>fiction</em>.</p>\n<h2>Author</h2>',
@@ -208,7 +208,7 @@ export const courses = [
       },
       {
         id:3, title:"Links & Images", xp:25,
-        theory:"**Links** `<a href='...'>` navigate to pages.\n- `target='_blank'` opens in new tab\n\n**Images** `<img src='...' alt='...'>` display pictures.\n- Always include `alt` for accessibility\n- Self-closing tag — no </img> needed",
+        theory:"**Links** `<a href='...'>` navigate to pages.\n- `target='_blank'` opens in new tab\n\n**Images** `<img src='...' alt='...'>` display pictures.\n- Always include `alt` for accessibility\n- Self-closing tag \u{2014} no </img> needed",
         code:'<a href="https://google.com">Visit Google</a>\n<br>\n<a href="https://github.com" target="_blank">GitHub (new tab)</a>\n<hr>\n<img src="https://via.placeholder.com/200" alt="placeholder" width="200">',
         challenge:"Write HTML with: (1) a link to https://github.com that opens in a new tab, (2) an image with a placeholder src and descriptive alt text, (3) the image wrapped in a link so clicking it goes somewhere.",
         hint:'<a href="https://github.com" target="_blank">GitHub</a>\n<a href="https://example.com">\n  <img src="https://via.placeholder.com/150" alt="my image">\n</a>',
@@ -222,7 +222,7 @@ export const courses = [
       },
       {
         id:4, title:"Lists", xp:20,
-        theory:"**Unordered** `<ul>` — bullet points\n**Ordered** `<ol>` — numbered\nBoth use `<li>` for items.\n\nLists can be **nested** inside each other.",
+        theory:"**Unordered** `<ul>` \u{2014} bullet points\n**Ordered** `<ol>` \u{2014} numbered\nBoth use `<li>` for items.\n\nLists can be **nested** inside each other.",
         code:'<ul>\n  <li>Apple</li>\n  <li>Banana</li>\n</ul>\n<ol>\n  <li>Wake up</li>\n  <li>Code</li>\n  <li>Sleep</li>\n</ol>',
         challenge:"Create an ordered list of your top 5 programming languages. Then create an unordered list of 3 reasons you want to learn coding. Nest a sub-list under at least one item.",
         hint:'<ol>\n  <li>Python</li>\n  <li>JavaScript\n    <ul><li>For the web</li></ul>\n  </li>\n</ol>',
@@ -266,10 +266,10 @@ export const courses = [
       },
       {
         id:7, title:"Semantic HTML", xp:25,
-        theory:"Semantic tags describe the **purpose** of content:\n- `<header>` — page header\n- `<nav>` — navigation\n- `<main>` — main content\n- `<article>` — self-contained content\n- `<section>` — thematic group\n- `<aside>` — sidebar\n- `<footer>` — footer\n\nHelps SEO and accessibility.",
-        code:'<header><h1>My Blog</h1><nav><a href="/">Home</a></nav></header>\n<main>\n  <article><h2>Post Title</h2><p>Content...</p></article>\n  <aside><p>About me sidebar</p></aside>\n</main>\n<footer><p>© 2025</p></footer>',
+        theory:"Semantic tags describe the **purpose** of content:\n- `<header>` \u{2014} page header\n- `<nav>` \u{2014} navigation\n- `<main>` \u{2014} main content\n- `<article>` \u{2014} self-contained content\n- `<section>` \u{2014} thematic group\n- `<aside>` \u{2014} sidebar\n- `<footer>` \u{2014} footer\n\nHelps SEO and accessibility.",
+        code:'<header><h1>My Blog</h1><nav><a href="/">Home</a></nav></header>\n<main>\n  <article><h2>Post Title</h2><p>Content...</p></article>\n  <aside><p>About me sidebar</p></aside>\n</main>\n<footer><p>\u{00A9} 2025</p></footer>',
         challenge:"Rebuild a webpage layout using ONLY semantic tags. No <div> allowed. Include: header with nav, main with an article and aside, and a footer with copyright text.",
-        hint:'<header><nav>...</nav></header>\n<main><article>...</article><aside>...</aside></main>\n<footer><p>© 2025</p></footer>',
+        hint:'<header><nav>...</nav></header>\n<main><article>...</article><aside>...</aside></main>\n<footer><p>\u{00A9} 2025</p></footer>',
         checks:[
           {type:"code_contains",   value:"<header>",  message:"Add a <header> element."},
           {type:"code_contains",   value:"<nav>",     message:"Add a <nav> inside the header."},
@@ -277,22 +277,22 @@ export const courses = [
           {type:"code_contains",   value:"<article>", message:"Add an <article> inside main."},
           {type:"code_contains",   value:"<aside>",   message:"Add an <aside> inside main."},
           {type:"code_contains",   value:"<footer>",  message:"Add a <footer> element."},
-          {type:"code_not_contains",value:"<div",     message:"Do not use <div> — this challenge requires only semantic tags."},
+          {type:"code_not_contains",value:"<div",     message:"Do not use <div> \u{2014} this challenge requires only semantic tags."},
         ],
         expected_outputs:[]
       },
     ]
   },
 
-  // ════════════════════════════════════════════════════════════
+  // \u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}
   //  CSS
-  // ════════════════════════════════════════════════════════════
+  // \u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}
   {
-    id:"css", title:"CSS", emoji:"🎨",
+    id:"css", title:"CSS", emoji:"\u{1F3A8}",
     tagline:"Style the web beautifully",
     color:"#8b5cf6", accent:"#a78bfa",
     xp:450, lessons:22, projects:4, difficulty:"Beginner",
-    description:"Make websites beautiful with CSS — selectors, flexbox, grid, animations, and responsive design.",
+    description:"Make websites beautiful with CSS \u{2014} selectors, flexbox, grid, animations, and responsive design.",
     topics:["Selectors","Box Model","Colors & Fonts","Flexbox","CSS Grid","Animations","Responsive Design","Variables"],
     projects_list:[
       {title:"Styled Profile Card",difficulty:"Easy",xp:60},
@@ -303,7 +303,7 @@ export const courses = [
     lessons_data:[
       {
         id:1, title:"CSS Basics & Selectors", xp:20,
-        theory:"CSS controls how HTML looks.\n\n```\nselector { property: value; }\n```\n\nSelectors:\n- `h1` — element\n- `.class` — class (reusable)\n- `#id` — ID (unique)\n- `*` — everything",
+        theory:"CSS controls how HTML looks.\n\n```\nselector { property: value; }\n```\n\nSelectors:\n- `h1` \u{2014} element\n- `.class` \u{2014} class (reusable)\n- `#id` \u{2014} ID (unique)\n- `*` \u{2014} everything",
         code:'h1 { color: #00ff9f; font-size: 2rem; }\n.card { background: #1a1a2e; padding: 20px; border-radius: 12px; color: white; }\n#special { border: 2px solid gold; }',
         challenge:"Write CSS that: (1) targets all p elements and gives them a dark background (#0f0f1e), white text, and 16px padding; (2) creates a .highlight class with yellow color and bold font-weight.",
         hint:'p { background: #0f0f1e; color: white; padding: 16px; }\n.highlight { color: yellow; font-weight: bold; }',
@@ -332,7 +332,7 @@ export const courses = [
       },
       {
         id:3, title:"The Box Model", xp:25,
-        theory:"Every element is a box:\n1. **Content**\n2. **Padding** — inside the border\n3. **Border**\n4. **Margin** — outside the border\n\nAlways add `box-sizing: border-box` — it includes padding and border in the element's total size.",
+        theory:"Every element is a box:\n1. **Content**\n2. **Padding** \u{2014} inside the border\n3. **Border**\n4. **Margin** \u{2014} outside the border\n\nAlways add `box-sizing: border-box` \u{2014} it includes padding and border in the element's total size.",
         code:'.box {\n  width: 300px;\n  padding: 20px;\n  border: 2px solid #00ff9f;\n  margin: 20px auto;\n  background: #1a1a2e;\n  color: white;\n  box-sizing: border-box;\n}',
         challenge:"Create a .card class with: 24px padding, a 1px solid border with any color, 12px border-radius, 20px margin, a dark background color, white text, and box-sizing: border-box.",
         hint:'.card { padding: 24px; border: 1px solid #333; border-radius: 12px; margin: 20px; background: #1a1a2e; color: white; box-sizing: border-box; }',
@@ -362,7 +362,7 @@ export const courses = [
       },
       {
         id:5, title:"CSS Grid", xp:30,
-        theory:"CSS Grid handles 2D layouts — rows AND columns.\n\n- `display: grid`\n- `grid-template-columns: repeat(3, 1fr)` — 3 equal columns\n- `gap` — space between cells\n- `grid-column: span 2` — span multiple columns\n- `minmax(250px, 1fr)` with `auto-fill` = responsive!",
+        theory:"CSS Grid handles 2D layouts \u{2014} rows AND columns.\n\n- `display: grid`\n- `grid-template-columns: repeat(3, 1fr)` \u{2014} 3 equal columns\n- `gap` \u{2014} space between cells\n- `grid-column: span 2` \u{2014} span multiple columns\n- `minmax(250px, 1fr)` with `auto-fill` = responsive!",
         code:'.grid {\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n  gap: 16px;\n}\n.featured { grid-column: span 2; }',
         challenge:"Create a .gallery grid with 4 equal columns and a 12px gap. Make a .featured class that spans 2 columns. Make a .full-width class that spans all 4 columns.",
         hint:'.gallery { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }\n.featured { grid-column: span 2; }\n.full-width { grid-column: span 4; }',
@@ -395,14 +395,14 @@ export const courses = [
     ]
   },
 
-  // ════════════════════════════════════════════════════════════
+  // \u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}
   //  JAVASCRIPT
-  // ════════════════════════════════════════════════════════════
+  // \u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}
   {
-    id:"javascript", title:"JavaScript", emoji:"⚡",
+    id:"javascript", title:"JavaScript", emoji:"\u{26A1}",
     tagline:"Make the web interactive",
     color:"#eab308", accent:"#facc15",
-    xp:600, lessons:28, projects:5, difficulty:"Beginner–Intermediate",
+    xp:600, lessons:28, projects:5, difficulty:"Beginner\u{2013}Intermediate",
     description:"The language of the web. Learn JavaScript to add interactivity, manipulate the DOM, and build dynamic applications.",
     topics:["Variables & Types","Functions","Arrays & Objects","DOM","Events","Async/Await","Fetch API","ES6+"],
     projects_list:[
@@ -415,7 +415,7 @@ export const courses = [
     lessons_data:[
       {
         id:1, title:"Variables: let, const, var", xp:20,
-        theory:"- `const` — cannot be reassigned. Use by default.\n- `let` — can be reassigned.\n- `var` — old, avoid it.\n\nStart with `const`, switch to `let` only if you need to reassign.",
+        theory:"- `const` \u{2014} cannot be reassigned. Use by default.\n- `let` \u{2014} can be reassigned.\n- `var` \u{2014} old, avoid it.\n\nStart with `const`, switch to `let` only if you need to reassign.",
         code:'const name = "Alex";\nlet score = 0;\nscore = 100;\nconsole.log(name, score);\n\nconst player = { name: "Alex", level: 1 };\nplayer.level = 2; // objects CAN be mutated\nconsole.log(player);',
         challenge:"Declare a const called `name` with your name. Declare a let called `score` starting at 0. Add 75 to score, then log both. Also create an object called `user` with name and score properties and log it.",
         hint:'const name = "Alex";\nlet score = 0;\nscore += 75;\nconst user = { name, score };\nconsole.log(name, score);\nconsole.log(user);',
@@ -446,7 +446,7 @@ export const courses = [
       },
       {
         id:3, title:"Arrays & Array Methods", xp:30,
-        theory:"- `map()` — transform each item\n- `filter()` — keep matching items\n- `reduce()` — combine into one value\n- `find()` — first matching item\n- `includes()` — check existence\n\nThese return new arrays (no mutation).",
+        theory:"- `map()` \u{2014} transform each item\n- `filter()` \u{2014} keep matching items\n- `reduce()` \u{2014} combine into one value\n- `find()` \u{2014} first matching item\n- `includes()` \u{2014} check existence\n\nThese return new arrays (no mutation).",
         code:'const nums = [1,2,3,4,5,6,7,8,9,10];\nconsole.log(nums.filter(n => n % 2 === 0));\nconsole.log(nums.map(n => n * 2));\nconsole.log(nums.reduce((acc, n) => acc + n, 0));',
         challenge:"Given `const nums = [1,2,3,4,5,6,7,8,9,10]`, use: (1) filter to get only numbers > 5, (2) map to square those numbers, (3) reduce to sum the squares. Log each result separately.",
         hint:'const nums = [1,2,3,4,5,6,7,8,9,10];\nconst gt5 = nums.filter(n => n > 5);\nconsole.log(gt5);\nconst squared = gt5.map(n => n * n);\nconsole.log(squared);\nconsole.log(squared.reduce((a,b) => a+b, 0));',
@@ -455,7 +455,7 @@ export const courses = [
           {type:"code_contains",  value:".map(",      message:"Use .map() to square the numbers."},
           {type:"code_contains",  value:".reduce(",   message:"Use .reduce() to sum the squares."},
           {type:"output_contains",value:"6",          message:"filter result should include 6 (numbers > 5 start at 6)."},
-          {type:"output_contains",value:"36",         message:"6 squared is 36 — it should appear in your squared array output."},
+          {type:"output_contains",value:"36",         message:"6 squared is 36 \u{2014} it should appear in your squared array output."},
           {type:"output_contains",value:"330",        message:"The sum of squares of 6,7,8,9,10 is 330."},
         ],
         expected_outputs:["330"]
@@ -494,11 +494,11 @@ export const courses = [
     ]
   },
 
-  // ════════════════════════════════════════════════════════════
+  // \u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}
   //  REACT
-  // ════════════════════════════════════════════════════════════
+  // \u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}
   {
-    id:"react", title:"React", emoji:"⚛️",
+    id:"react", title:"React", emoji:"\u{269B}\u{FE0F}",
     tagline:"Build modern UIs with components",
     color:"#06b6d4", accent:"#22d3ee",
     xp:700, lessons:30, projects:5, difficulty:"Intermediate",
@@ -514,7 +514,7 @@ export const courses = [
     lessons_data:[
       {
         id:1, title:"Components & JSX", xp:25,
-        theory:"React UIs are built from **components** — JavaScript functions that return JSX.\n\nJSX rules:\n- Component names must be **Capitalized**\n- Use `className` not `class`\n- Must have **one root element** (or use `<>...</>` fragments)\n- JavaScript goes in `{curly braces}`\n- Self-close empty tags: `<img />`, `<br />`",
+        theory:"React UIs are built from **components** \u{2014} JavaScript functions that return JSX.\n\nJSX rules:\n- Component names must be **Capitalized**\n- Use `className` not `class`\n- Must have **one root element** (or use `<>...</>` fragments)\n- JavaScript goes in `{curly braces}`\n- Self-close empty tags: `<img />`, `<br />`",
         code:'function WelcomeCard({ name, level }) {\n  return (\n    <div style={{padding:20,background:"#1a1a2e",borderRadius:12,color:"white"}}>\n      <h2 style={{color:"#00ff9f"}}>Welcome, {name}!</h2>\n      <p>Level: {level}</p>\n      <p>XP to next level: {level * 100}</p>\n    </div>\n  );\n}\nconsole.log("Component defined");',
         challenge:"Write a React component called `ProfileCard` that accepts props: `name`, `role`, and `xp`. It should render a div containing those three values. Use it with at least two different sets of props in a comment. Must use JSX with className (not class).",
         hint:'function ProfileCard({ name, role, xp }) {\n  return (\n    <div className="card">\n      <h2>{name}</h2>\n      <p>{role}</p>\n      <span>XP: {xp}</span>\n    </div>\n  );\n}',
@@ -547,7 +547,7 @@ export const courses = [
       },
       {
         id:3, title:"useEffect Hook", xp:35,
-        theory:"**useEffect** handles side effects — data fetching, timers, subscriptions.\n\n```\nuseEffect(() => {\n  // effect\n  return () => { /* cleanup */ };\n}, [dependencies]);\n```\n\n- `[]` — runs once after mount\n- `[value]` — runs when `value` changes\n- No array — runs after every render",
+        theory:"**useEffect** handles side effects \u{2014} data fetching, timers, subscriptions.\n\n```\nuseEffect(() => {\n  // effect\n  return () => { /* cleanup */ };\n}, [dependencies]);\n```\n\n- `[]` \u{2014} runs once after mount\n- `[value]` \u{2014} runs when `value` changes\n- No array \u{2014} runs after every render",
         code:'const { useState, useEffect } = React;\n\nfunction Timer() {\n  const [seconds, setSeconds] = useState(0);\n  const [running, setRunning] = useState(false);\n\n  useEffect(() => {\n    if (!running) return;\n    const interval = setInterval(() => setSeconds(s => s + 1), 1000);\n    return () => clearInterval(interval); // cleanup!\n  }, [running]);\n\n  return (\n    <div style={{padding:20,color:"white",background:"#1a1a2e",borderRadius:12}}>\n      <h2 style={{color:"#00ff9f"}}>{seconds}s</h2>\n      <button onClick={() => setRunning(!running)}>{running ? "Pause" : "Start"}</button>\n      <button onClick={() => { setRunning(false); setSeconds(0); }} style={{marginLeft:8}}>Reset</button>\n    </div>\n  );\n}\nconsole.log("Timer with useEffect ready");',
         challenge:"Write a component called `WindowWidth` that uses useEffect and useState to track the window's width. Use window.addEventListener('resize', handler) in the effect and clean it up. Display 'Window width: Xpx' in the component.",
         hint:'const { useState, useEffect } = React;\nfunction WindowWidth() {\n  const [width, setWidth] = useState(window.innerWidth);\n  useEffect(() => {\n    const handler = () => setWidth(window.innerWidth);\n    window.addEventListener("resize", handler);\n    return () => window.removeEventListener("resize", handler);\n  }, []);\n  return <p>Window width: {width}px</p>;\n}',
@@ -565,11 +565,11 @@ export const courses = [
     ]
   },
 
-  // ════════════════════════════════════════════════════════════
+  // \u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}
   //  GIT
-  // ════════════════════════════════════════════════════════════
+  // \u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}
   {
-    id:"git", title:"Git & GitHub", emoji:"🌿",
+    id:"git", title:"Git & GitHub", emoji:"\u{1F33F}",
     tagline:"Version control like a pro",
     color:"#f43f5e", accent:"#fb7185",
     xp:300, lessons:16, projects:2, difficulty:"Beginner",
@@ -582,7 +582,7 @@ export const courses = [
     lessons_data:[
       {
         id:1, title:"What is Git?", xp:20,
-        theory:"Git is a **version control system** — a time machine for your code.\n\n- **Repository**: A project tracked by Git\n- **Commit**: A snapshot in time\n- **Branch**: A parallel version\n- **Remote**: Hosted copy (GitHub)\n\nWithout Git, one mistake can destroy hours of work.",
+        theory:"Git is a **version control system** \u{2014} a time machine for your code.\n\n- **Repository**: A project tracked by Git\n- **Commit**: A snapshot in time\n- **Branch**: A parallel version\n- **Remote**: Hosted copy (GitHub)\n\nWithout Git, one mistake can destroy hours of work.",
         code:'git config --global user.name "Your Name"\ngit config --global user.email "you@example.com"\nmkdir my-project\ncd my-project\ngit init\ngit status',
         challenge:"Write the commands to: (1) configure your git username as 'YourName', (2) configure your email, (3) create a new folder called 'portfolio', (4) navigate into it, (5) initialise a git repo.",
         hint:'git config --global user.name "YourName"\ngit config --global user.email "you@email.com"\nmkdir portfolio\ncd portfolio\ngit init',
@@ -597,7 +597,7 @@ export const courses = [
       },
       {
         id:2, title:"Add, Commit, Push", xp:25,
-        theory:"The core workflow:\n1. Edit files\n2. `git add .` — stage changes\n3. `git commit -m 'message'` — snapshot\n4. `git push` — upload to GitHub\n\nGood commit messages: present tense, under 72 chars, describe WHAT changed.",
+        theory:"The core workflow:\n1. Edit files\n2. `git add .` \u{2014} stage changes\n3. `git commit -m 'message'` \u{2014} snapshot\n4. `git push` \u{2014} upload to GitHub\n\nGood commit messages: present tense, under 72 chars, describe WHAT changed.",
         code:'git add index.html\ngit add .\ngit commit -m "Add homepage layout"\ngit remote add origin https://github.com/user/repo.git\ngit push -u origin main\ngit log --oneline',
         challenge:"Write the full workflow to stage ALL files, commit with message 'Add README and homepage', connect to a remote called origin at https://github.com/yourname/myproject.git, and push to main.",
         hint:'git add .\ngit commit -m "Add README and homepage"\ngit remote add origin https://github.com/yourname/myproject.git\ngit push -u origin main',
@@ -611,7 +611,7 @@ export const courses = [
       },
       {
         id:3, title:"Branches", xp:25,
-        theory:"Branches let you work on features without touching main code.\n\n- `git branch` — list branches\n- `git checkout -b name` — create and switch\n- `git checkout main` — switch to main\n- `git merge name` — merge into current branch\n- `git branch -d name` — delete branch",
+        theory:"Branches let you work on features without touching main code.\n\n- `git branch` \u{2014} list branches\n- `git checkout -b name` \u{2014} create and switch\n- `git checkout main` \u{2014} switch to main\n- `git merge name` \u{2014} merge into current branch\n- `git branch -d name` \u{2014} delete branch",
         code:'git checkout -b feature/login-page\ngit add .\ngit commit -m "Add login form"\ngit checkout main\ngit merge feature/login-page\ngit branch -d feature/login-page',
         challenge:"Write the commands to: (1) create and switch to a branch called 'feature/navbar', (2) commit all changes with message 'Add navbar component', (3) switch back to main, (4) merge the feature branch, (5) delete the feature branch.",
         hint:'git checkout -b feature/navbar\ngit add .\ngit commit -m "Add navbar component"\ngit checkout main\ngit merge feature/navbar\ngit branch -d feature/navbar',
@@ -642,15 +642,15 @@ export const courses = [
     ]
   },
 
-  // ════════════════════════════════════════════════════════════
+  // \u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}
   //  DSA
-  // ════════════════════════════════════════════════════════════
+  // \u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}\u{2550}
   {
-    id:"dsa", title:"Data Structures & Algorithms", emoji:"🧩",
+    id:"dsa", title:"Data Structures & Algorithms", emoji:"\u{1F9E9}",
     tagline:"Think like a computer scientist",
     color:"#10b981", accent:"#34d399",
-    xp:800, lessons:35, projects:3, difficulty:"Intermediate–Advanced",
-    description:"Master the fundamentals of CS — data structures, algorithms, and problem-solving patterns for technical interviews.",
+    xp:800, lessons:35, projects:3, difficulty:"Intermediate\u{2013}Advanced",
+    description:"Master the fundamentals of CS \u{2014} data structures, algorithms, and problem-solving patterns for technical interviews.",
     topics:["Big O","Arrays","Linked Lists","Stacks & Queues","Trees","Graphs","Sorting","Searching","Dynamic Programming","Recursion"],
     projects_list:[
       {title:"Sorting Visualizer",difficulty:"Medium",xp:150},
@@ -660,9 +660,9 @@ export const courses = [
     lessons_data:[
       {
         id:1, title:"Big O Notation", xp:30,
-        theory:"Big O describes how runtime scales with input size `n`.\n\n- **O(1)** — Constant (dictionary lookup)\n- **O(log n)** — Logarithmic (binary search)\n- **O(n)** — Linear (single loop)\n- **O(n log n)** — Log-linear (merge sort)\n- **O(n²)** — Quadratic (nested loops)\n\nWe always care about **worst case** and drop constants.",
+        theory:"Big O describes how runtime scales with input size `n`.\n\n- **O(1)** \u{2014} Constant (dictionary lookup)\n- **O(log n)** \u{2014} Logarithmic (binary search)\n- **O(n)** \u{2014} Linear (single loop)\n- **O(n log n)** \u{2014} Log-linear (merge sort)\n- **O(n\u{00B2})** \u{2014} Quadratic (nested loops)\n\nWe always care about **worst case** and drop constants.",
         code:'def get_first(arr): return arr[0]           # O(1)\n\ndef find_max(arr):                            # O(n)\n    m = arr[0]\n    for x in arr:\n        if x > m: m = x\n    return m\n\ndef has_pair_sum(arr, target):               # O(n)\n    seen = set()\n    for n in arr:\n        if target - n in seen: return True\n        seen.add(n)\n    return False\n\nprint(find_max([3,1,7,2,9,4]))\nprint(has_pair_sum([2,7,11,15], 9))',
-        challenge:"Write two functions to check for duplicates in a list. First: `slow_has_dup(arr)` using nested loops — O(n²). Second: `fast_has_dup(arr)` using a set — O(n). Test both with [1,2,3,1] and print results.",
+        challenge:"Write two functions to check for duplicates in a list. First: `slow_has_dup(arr)` using nested loops \u{2014} O(n\u{00B2}). Second: `fast_has_dup(arr)` using a set \u{2014} O(n). Test both with [1,2,3,1] and print results.",
         hint:'def slow_has_dup(arr):\n    for i in range(len(arr)):\n        for j in range(i+1, len(arr)):\n            if arr[i] == arr[j]: return True\n    return False\n\ndef fast_has_dup(arr):\n    seen = set()\n    for n in arr:\n        if n in seen: return True\n        seen.add(n)\n    return False\n\nprint(slow_has_dup([1,2,3,1]))\nprint(fast_has_dup([1,2,3,1]))',
         checks:[
           {type:"code_contains",  value:"def slow_has_dup",   message:"Define slow_has_dup using nested loops."},
@@ -674,7 +674,7 @@ export const courses = [
       },
       {
         id:2, title:"Two Pointers", xp:30,
-        theory:"**Two pointers** solve many array problems in O(n) instead of O(n²).\n\nPatterns:\n- Opposite ends moving inward (palindrome, two-sum in sorted array)\n- Fast/slow pointers (cycle detection)\n- Sliding window (substring problems)",
+        theory:"**Two pointers** solve many array problems in O(n) instead of O(n\u{00B2}).\n\nPatterns:\n- Opposite ends moving inward (palindrome, two-sum in sorted array)\n- Fast/slow pointers (cycle detection)\n- Sliding window (substring problems)",
         code:'def is_palindrome(s):\n    left, right = 0, len(s) - 1\n    while left < right:\n        if s[left] != s[right]: return False\n        left += 1\n        right -= 1\n    return True\n\ndef reverse_array(arr):\n    left, right = 0, len(arr) - 1\n    while left < right:\n        arr[left], arr[right] = arr[right], arr[left]\n        left += 1\n        right -= 1\n    return arr\n\nprint(is_palindrome("racecar"))\nprint(reverse_array([1,2,3,4,5]))',
         challenge:"Write `two_sum_sorted(arr, target)` using two pointers (not a hash map). The array is already sorted. Return the indices [i, j] of the two numbers that add up to target. Test with ([1,3,5,7,9], 12).",
         hint:'def two_sum_sorted(arr, target):\n    left, right = 0, len(arr) - 1\n    while left < right:\n        s = arr[left] + arr[right]\n        if s == target: return [left, right]\n        elif s < target: left += 1\n        else: right -= 1\n    return []\nprint(two_sum_sorted([1,3,5,7,9], 12))',
@@ -683,7 +683,7 @@ export const courses = [
           {type:"code_contains",  value:"left, right",         message:"Use two pointer variables called left and right."},
           {type:"code_contains",  value:"while left < right",  message:"Use a while loop with condition left < right."},
           {type:"output_contains",value:"1",                   message:"Index 1 (value 3) should be in the result for ([1,3,5,7,9], 12)."},
-          {type:"output_contains",value:"4",                   message:"Index 4 (value 9) should be in the result — 3+9=12."},
+          {type:"output_contains",value:"4",                   message:"Index 4 (value 9) should be in the result \u{2014} 3+9=12."},
         ],
         expected_outputs:[]
       },
@@ -691,7 +691,7 @@ export const courses = [
         id:3, title:"Stacks & Queues", xp:30,
         theory:"**Stack** (LIFO): push/pop from same end. Use for: undo, call stack, brackets.\n**Queue** (FIFO): add to back, remove from front. Use for: BFS, scheduling.\n\nPython: lists = stacks. `collections.deque` = efficient queue.",
         code:'from collections import deque\nstack = []\nstack.append(1); stack.append(2); stack.append(3)\nprint("Stack pop:", stack.pop())\n\nqueue = deque()\nqueue.append("A"); queue.append("B")\nprint("Queue dequeue:", queue.popleft())',
-        challenge:"Write `is_balanced(s)` that checks if brackets are balanced using a stack. '({[]})' → True, '([)]' → False, '{{{' → False. Test all three and print the results.",
+        challenge:"Write `is_balanced(s)` that checks if brackets are balanced using a stack. '({[]})' \u{2192} True, '([)]' \u{2192} False, '{{{' \u{2192} False. Test all three and print the results.",
         hint:'def is_balanced(s):\n    stack = []\n    pairs = {")":"(", "]":"[", "}":"{"}\n    for c in s:\n        if c in "([{":\n            stack.append(c)\n        elif c in ")]}":\n            if not stack or stack[-1] != pairs[c]: return False\n            stack.pop()\n    return len(stack) == 0\nprint(is_balanced("({[]})"))\nprint(is_balanced("([)]"))\nprint(is_balanced("{{{"))',
         checks:[
           {type:"code_contains",  value:"def is_balanced",    message:"Define a function called is_balanced."},
@@ -704,7 +704,7 @@ export const courses = [
       },
       {
         id:4, title:"Recursion", xp:35,
-        theory:"Recursion: a function that **calls itself** on a smaller input.\n\nEvery recursive function needs:\n1. **Base case** — when to stop\n2. **Recursive case** — smaller version of the problem\n\nThink: solve the tiny piece, trust recursion for the rest.",
+        theory:"Recursion: a function that **calls itself** on a smaller input.\n\nEvery recursive function needs:\n1. **Base case** \u{2014} when to stop\n2. **Recursive case** \u{2014} smaller version of the problem\n\nThink: solve the tiny piece, trust recursion for the rest.",
         code:'def factorial(n):\n    if n <= 1: return 1          # base case\n    return n * factorial(n - 1)  # recursive case\n\ndef fib(n):\n    if n <= 1: return n\n    return fib(n-1) + fib(n-2)\n\nprint(factorial(6))\nprint(fib(10))',
         challenge:"Write a recursive function `power(base, exp)` that computes base^exp WITHOUT using ** or pow(). power(2, 10) should return 1024. Print the result.",
         hint:'def power(base, exp):\n    if exp == 0: return 1\n    return base * power(base, exp - 1)\nprint(power(2, 10))',
@@ -712,23 +712,23 @@ export const courses = [
           {type:"code_contains",  value:"def power",          message:"Define a recursive function called power."},
           {type:"code_contains",  value:"if exp == 0",        message:"Include the base case: if exp == 0, return 1."},
           {type:"code_contains",  value:"power(base, exp - 1)",message:"Recursive call: return base * power(base, exp - 1)."},
-          {type:"code_not_contains",value:"**",               message:"Do not use ** — compute it yourself recursively."},
-          {type:"code_not_contains",value:"pow(",             message:"Do not use pow() — compute it yourself recursively."},
+          {type:"code_not_contains",value:"**",               message:"Do not use ** \u{2014} compute it yourself recursively."},
+          {type:"code_not_contains",value:"pow(",             message:"Do not use pow() \u{2014} compute it yourself recursively."},
           {type:"output_contains",value:"1024",               message:"power(2, 10) should output 1024."},
         ],
         expected_outputs:["1024"]
       },
       {
         id:5, title:"Sorting Algorithms", xp:35,
-        theory:"Must-know sorts:\n- **Bubble Sort** O(n²) — compare adjacent, swap\n- **Selection Sort** O(n²) — find min, swap to front\n- **Insertion Sort** O(n²) — build sorted portion\n- **Merge Sort** O(n log n) — divide and conquer\n\nPython's built-in `sort()` uses Timsort — O(n log n).",
+        theory:"Must-know sorts:\n- **Bubble Sort** O(n\u{00B2}) \u{2014} compare adjacent, swap\n- **Selection Sort** O(n\u{00B2}) \u{2014} find min, swap to front\n- **Insertion Sort** O(n\u{00B2}) \u{2014} build sorted portion\n- **Merge Sort** O(n log n) \u{2014} divide and conquer\n\nPython's built-in `sort()` uses Timsort \u{2014} O(n log n).",
         code:'def bubble_sort(arr):\n    n = len(arr)\n    for i in range(n):\n        for j in range(n - i - 1):\n            if arr[j] > arr[j+1]:\n                arr[j], arr[j+1] = arr[j+1], arr[j]\n    return arr\n\nprint(bubble_sort([64,34,25,12,22,11,90]))',
         challenge:"Implement `selection_sort(arr)`: repeatedly find the minimum in the unsorted part and swap it to the front. Sort [29,10,14,37,13] and print the result. Do NOT use Python's built-in sort().",
         hint:'def selection_sort(arr):\n    for i in range(len(arr)):\n        min_idx = i\n        for j in range(i+1, len(arr)):\n            if arr[j] < arr[min_idx]: min_idx = j\n        arr[i], arr[min_idx] = arr[min_idx], arr[i]\n    return arr\nprint(selection_sort([29,10,14,37,13]))',
         checks:[
           {type:"code_contains",   value:"def selection_sort",  message:"Define a function called selection_sort."},
           {type:"code_contains",   value:"min_idx",             message:"Track the minimum index with a variable called min_idx."},
-          {type:"code_not_contains",value:".sort()",            message:"Do not use Python's built-in .sort() — implement it yourself."},
-          {type:"code_not_contains",value:"sorted(",            message:"Do not use sorted() — implement selection sort manually."},
+          {type:"code_not_contains",value:".sort()",            message:"Do not use Python's built-in .sort() \u{2014} implement it yourself."},
+          {type:"code_not_contains",value:"sorted(",            message:"Do not use sorted() \u{2014} implement selection sort manually."},
           {type:"output_contains", value:"10",                  message:"The sorted result should start with 10 (the smallest)."},
           {type:"output_contains", value:"37",                  message:"37 should be last in the sorted result."},
         ],
