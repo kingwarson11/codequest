@@ -30,7 +30,7 @@ export default function Home() {
             </p>
             <div className={styles.heroCtas}>
               <Link to="/courses" className="btn btn-primary" style={{ fontSize: '1rem', padding: '14px 28px' }}>
-                Start Learning →
+                Start Learning \u{2192}
               </Link>
               <Link to="/playground" className="btn btn-outline" style={{ fontSize: '1rem', padding: '14px 28px' }}>
                 Try Playground
@@ -66,7 +66,7 @@ export default function Home() {
         <div className="container">
           <div className={styles.sectionHead}>
             <h2 className={styles.sectionTitle}>Choose Your Path</h2>
-            <Link to="/courses" className={styles.seeAll}>View all →</Link>
+            <Link to="/courses" className={styles.seeAll}>View all \u{2192}</Link>
           </div>
           <div className={styles.courseGrid}>
             {courses.map((course, i) => {
@@ -100,7 +100,7 @@ export default function Home() {
                       </div>
                     </div>
                   )}
-                  <div className={styles.cardArrow}>→</div>
+                  <div className={styles.cardArrow}>\u{2192}</div>
                 </Link>
               )
             })}
@@ -116,12 +116,12 @@ export default function Home() {
           </h2>
           <div className={styles.features}>
             {[
-              { icon: '🎮', title: 'Game-Based Learning', desc: 'Earn XP for every lesson completed, level up, and unlock achievements as you progress.' },
-              { icon: '💻', title: 'Real Code Editor', desc: 'Write and run code directly in the browser. No setup required — just open and code.' },
-              { icon: '🚀', title: 'Project-Based', desc: 'Apply what you learn by building real projects you can add to your portfolio.' },
-              { icon: '📊', title: 'Track Progress', desc: 'See exactly how far you\'ve come with detailed progress tracking across all courses.' },
-              { icon: '🔥', title: 'Learning Streaks', desc: 'Build consistency with daily learning streaks. Small steps lead to big skills.' },
-              { icon: '🏆', title: 'Earn Badges', desc: 'Unlock achievement badges as you hit milestones. Show off your coding journey.' },
+              { icon: '\u{1F3AE}', title: 'Game-Based Learning', desc: 'Earn XP for every lesson completed, level up, and unlock achievements as you progress.' },
+              { icon: '\u{1F4BB}', title: 'Real Code Editor', desc: 'Write and run code directly in the browser. No setup required \u{2014} just open and code.' },
+              { icon: '\u{1F680}', title: 'Project-Based', desc: 'Apply what you learn by building real projects you can add to your portfolio.' },
+              { icon: '\u{1F4CA}', title: 'Track Progress', desc: 'See exactly how far you\'ve come with detailed progress tracking across all courses.' },
+              { icon: '\u{1F525}', title: 'Learning Streaks', desc: 'Build consistency with daily learning streaks. Small steps lead to big skills.' },
+              { icon: '\u{1F3C6}', title: 'Earn Badges', desc: 'Unlock achievement badges as you hit milestones. Show off your coding journey.' },
             ].map(f => (
               <div key={f.title} className={styles.feature}>
                 <div className={styles.featureIcon}>{f.icon}</div>
@@ -140,7 +140,7 @@ export default function Home() {
             <h2>Ready to start your coding journey?</h2>
             <p>Join thousands of learners leveling up their skills with CodeQuest</p>
             <Link to="/courses" className="btn btn-primary" style={{ fontSize: '1rem', padding: '14px 32px' }}>
-              Explore All Courses →
+              Explore All Courses \u{2192}
             </Link>
           </div>
         </div>
